@@ -1,0 +1,31 @@
+machine:
+  timezone: Europe/London
+  node:
+    version: stable
+  environment:
+    PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
+
+dependencies:
+  cache_directories:
+    - ~/.cache/yarn
+    - bower_components
+  pre:
+    - curl -o- -L https://yarnpkg.com/install.sh | bash # temporary workaround for https://github.com/circleci/circleci-docs/issues/543
+  override:
+    - yarn
+
+test:
+  override:
+    - yarn test
+  post:
+    - yarn run preflight
+
+deployment:
+  s3: # this is just a custom name, could be anything
+    branch: /.*/
+    commands:
+      - yarn run deploy:confirm
+
+general:
+  artifacts:
+    - dist
