@@ -1,7 +1,7 @@
 export default () => ({ // eslint-disable-line
 
   // link file UUID
-  id: '',
+  id: '855d4ef2-9abd-11e6-8f9b-70e3cabccfae',
 
   // canonical URL of the published page
   // https://ig.ft.com/sites/loas-yesterday get filled in by the ./configure script
@@ -9,22 +9,21 @@ export default () => ({ // eslint-disable-line
 
   // To set an exact publish date do this:
   //       new Date('2016-05-17T17:11:22Z')
-  publishedDate: new Date(),
+  publishedDate: new Date('2016-11-07T05:29:34Z'),
 
-  headline: 'Politics and the English Language',
+  headline: 'The Life of a Song: ‘Yesterday’',
 
   // summary === standfirst (Summary is what the content API calls it)
-  summary: 'Political language is designed to make lies sound truthful' +
-           'and murder respectable, and to give an appearance of solidity to pure wind',
+  summary: 'The song came to Paul McCartney in a dream one night in London in 1963',
 
   topic: {
-    name: 'Starter Kit',
-    url: '/foo',
+    name: 'Music',
+    url: 'https://www.ft.com/arts/music',
   },
 
   relatedArticle: {
-    text: 'Related article »',
-    url: 'https://en.wikipedia.org/wiki/Politics_and_the_English_Language',
+    text: 'Life of a Song »',
+    url: 'https://www.ft.com/life-arts/life-of-a-song',
   },
 
   mainImage: {
@@ -38,15 +37,14 @@ export default () => ({ // eslint-disable-line
   // Byline can by a plain string, markdown, or array of authors
   // if array of authors, url is optional
   byline: [
-    { name: 'Author One', url: '/foo/bar' },
-    { name: 'Author Two' },
+    { name: 'Bernadette McNulty', url: 'https://www.ft.com/stream/authorsId/NWE2MjU2ZjAtOGU5Mi00NDkyLWFmYWEtNzQzYzU4OGMwODI2-QXV0aG9ycw==' },
   ],
 
   // Appears in the HTML <title>
-  title: '',
+  title: 'The Life of a Song: ‘Yesterday’',
 
   // meta data
-  description: '',
+  description: 'The song came to Paul McCartney in a dream one night in London in 1963',
 
   /*
   TODO: Select Twitter card type -
@@ -62,9 +60,9 @@ export default () => ({ // eslint-disable-line
         optional social meta data?
   */
   // General social
-  // socialImage: '',
-  // socialHeadline: '',
-  // socialSummary:  '',
+  socialImage: 'https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod-us.s3.amazonaws.com%2Fc72ccc9e-a289-11e6-aa83-bcb58d1d2193?source=next&fit=scale-down&width=700',
+  socialHeadline: 'The Life of a Song: ‘Yesterday’',
+  socialSummary: 'The song came to Paul McCartney in a dream one night in London in 1963',
 
   // TWITTER
   // twitterImage: '',

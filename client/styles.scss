@@ -14,3 +14,9 @@
                 - index.js
                 - template.html
 */
+
+.g-audio.g-audio--initialized .g-audio--playbutton:before,
+.g-audio.g-audio--initialized.pause .g-audio--playbutton:before {
+  margin-top: 0;
+  margin-bottom: 0;
+}
