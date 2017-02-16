@@ -79,10 +79,10 @@ module.exports = {
       .to.have.attribute('content').not.equal('');
   },
 
-  'Optional image link tag should be present': (client) => {
-    client.verify.elementPresent('link[rel="image_src"]',
-      'Please add social images to config/article.js!');
-  },
+  // 'Optional image link tag should be present': (client) => {
+  //   client.verify.elementPresent('link[rel="image_src"]',
+  //     'Please add social images to config/article.js!');
+  // },
 
   'Optional Twitter meta image should have content if present': (client) => {
     client.perform((done) => {
