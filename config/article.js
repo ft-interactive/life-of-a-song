@@ -4,8 +4,8 @@ export default () => ({ // eslint-disable-line
   id: '855d4ef2-9abd-11e6-8f9b-70e3cabccfae',
 
   // canonical URL of the published page
-  // https://ig.ft.com/sites/loas-yesterday get filled in by the ./configure script
-  url: 'https://ig.ft.com/sites/loas-yesterday',
+  // https://ig.ft.com/sites/life-of-a-song/yesterday get filled in by the ./configure script
+  url: 'https://ig.ft.com/sites/life-of-a-song/yesterday',
 
   // To set an exact publish date do this:
   //       new Date('2016-05-17T17:11:22Z')
