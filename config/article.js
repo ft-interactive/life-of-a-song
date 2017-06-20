@@ -17,14 +17,14 @@ export default () => ({ // eslint-disable-line
   summary: 'The song came to Paul McCartney in a dream one night in London in 1963',
 
   topic: {
-    name: 'Music',
-    url: 'https://www.ft.com/arts/music',
-  },
-
-  relatedArticle: {
-    text: 'Life of a Song »',
+    name: 'Life of a Song',
     url: 'https://www.ft.com/life-arts/life-of-a-song',
   },
+
+  // relatedArticle: {
+  //   text: 'Life of a Song »',
+  //   url: 'https://www.ft.com/life-arts/life-of-a-song',
+  // },
 
   mainImage: {
     title: '',
