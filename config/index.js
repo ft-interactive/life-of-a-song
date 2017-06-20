@@ -9,7 +9,7 @@ export default async (a, storyId, storyMetadata) => {
   const onwardJourney = await getOnwardJourney();
 
   d.id = storyMetadata.uuid;
-  d.url = `https://ig.ft.com/sites/life-of-a-song/${storyMetadata.storyId}`;
+  d.url = `https://ig.ft.com/life-of-a-song/${storyMetadata.storyId}.html`;
   d.headline = storyMetadata.headline;
   d.title = d.headline;
   d.summary = storyMetadata.standfirst;
