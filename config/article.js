@@ -17,14 +17,14 @@ export default () => ({ // eslint-disable-line
   summary: 'The song came to Paul McCartney in a dream one night in London in 1963',
 
   topic: {
-    name: 'Music',
-    url: 'https://www.ft.com/arts/music',
-  },
-
-  relatedArticle: {
-    text: 'Life of a Song »',
+    name: 'Life of a Song',
     url: 'https://www.ft.com/life-arts/life-of-a-song',
   },
+
+  // relatedArticle: {
+  //   text: 'Life of a Song »',
+  //   url: 'https://www.ft.com/life-arts/life-of-a-song',
+  // },
 
   mainImage: {
     title: '',
@@ -60,9 +60,9 @@ export default () => ({ // eslint-disable-line
         optional social meta data?
   */
   // General social
-  socialImage: 'https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod-us.s3.amazonaws.com%2Fc72ccc9e-a289-11e6-aa83-bcb58d1d2193?source=next&fit=scale-down&width=700',
-  socialHeadline: 'The Life of a Song: ‘Yesterday’',
-  socialSummary: 'The song came to Paul McCartney in a dream one night in London in 1963',
+  // socialImage: 'https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod-us.s3.amazonaws.com%2Fc72ccc9e-a289-11e6-aa83-bcb58d1d2193?source=next&fit=scale-down&width=700',
+  // socialHeadline: 'The Life of a Song: ‘Yesterday’',
+  // socialSummary: 'The song came to Paul McCartney in a dream one night in London in 1963',
 
   // TWITTER
   // twitterImage: '',

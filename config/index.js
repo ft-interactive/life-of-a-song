@@ -1,36 +1,34 @@
+import * as bertha from 'bertha-client';
 import article from './article';
 import getFlags from './flags';
 import getOnwardJourney from './onward-journey';
 
-export default async () => {
+export default async (a, storyId, storyMetadata) => {
   const d = await article();
   const flags = await getFlags();
   const onwardJourney = await getOnwardJourney();
-  /*
-  An experimental demo that gets content from the API
-  and overwrites some model values. This requires the Link File
-  to have been published. Also next-es-interface.ft.com probably
-  isn't a reliable source. Also this has no way to prevent development
-  values being seen in productions... use with care.
 
-  try {
-    const a = (await axios(`https://next-es-interface.ft.com/content/${d.id}`)).data;
-    d.headline = a.title;
-    d.byline = a.byline;
-    d.summary = a.summaries[0];
-    d.title = d.title || a.title;
-    d.description = d.description || a.summaries[1] || a.summaries[0];
-    d.publishedDate = new Date(a.publishedDate);
-    f.comments = a.comments;
-  } catch (e) {
-    console.log('Error getting content from content API');
-  }
+  d.id = storyMetadata.uuid;
+  d.url = `https://ig.ft.com/life-of-a-song/${storyMetadata.storyId}.html`;
+  d.headline = storyMetadata.headline;
+  d.title = d.headline;
+  d.summary = storyMetadata.standfirst;
+  d.description = d.summary;
+  d.mainImage.url = `https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod-us.s3.amazonaws.com%2F${storyMetadata.masterimageuuid}?source=next&fit=scale-down&width=700`;
+  d.mainImage.description = storyMetadata.masterimagecredit;
+  d.publishedDate = new Date(storyMetadata.pubdate);
+  d.byline = [{ name: storyMetadata.author, url: storyMetadata.authorlink }];
 
-  */
+  const textContent = await bertha.get('1B-nm2Cip5AU57KC9Yt03WM0JB5jSxNL0CFjJmyN2upo', [storyId], { republish: true }).then((data) => {
+    return data[storyId];
+  });
+
+  const storyContent = textContent[0].text;
 
   return {
     ...d,
     flags,
     onwardJourney,
+    storyContent,
   };
 };

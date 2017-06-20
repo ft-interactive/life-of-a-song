@@ -1,4 +1,5 @@
 /* eslint-disable no-console, global-require, import/no-extraneous-dependencies */
+import * as bertha from 'bertha-client';
 
 import browserify from 'browserify';
 import browserSync from 'browser-sync';
@@ -20,6 +21,7 @@ import util from 'gulp-util';
 import autoprefixer from 'gulp-autoprefixer';
 import plumber from 'gulp-plumber';
 import http from 'http';
+import rename from 'gulp-rename';
 
 const ansiToHTML = new AnsiToHTML();
 
@@ -196,17 +198,28 @@ gulp.task('copy', () =>
     .pipe(gulp.dest('dist')),
 );
 
-gulp.task('build-pages', () => {
+gulp.task('build-pages', async () => {
   delete require.cache[require.resolve('./views')];
   delete require.cache[require.resolve('./config/flags')];
   delete require.cache[require.resolve('./config/article')];
   delete require.cache[require.resolve('./config/index')];
 
-  return gulp.src('client/**/*.html')
-    .pipe(plumber())
-    .pipe(gulpdata(async d => require('./config').default(d)))
-    .pipe(gulpnunjucks.compile(null, { env: require('./views').configure() }))
-    .pipe(gulp.dest('dist'));
+  const toc = await bertha.get('1B-nm2Cip5AU57KC9Yt03WM0JB5jSxNL0CFjJmyN2upo', ['toc'], { republish: true }).then((data) => {
+    return data.toc;
+  });
+
+  const storyIds = toc.map(d => d.id);
+  for (let i = 0; i < storyIds.length; i += 1) {
+    const storyId = storyIds[i];
+    const storyMetadata = toc.filter(s => s.id === storyId)[0];
+
+    gulp.src('client/**/*.html')
+      .pipe(plumber())
+      .pipe(gulpdata(async d => require('./config').default(d, storyId, storyMetadata)))
+      .pipe(gulpnunjucks.compile(null, { env: require('./views').configure() }))
+      .pipe(rename(`${storyId}.html`))
+      .pipe(gulp.dest('dist'));
+  }
 });
 
 // minifies all HTML, CSS and JS (dist & client => dist)
@@ -273,7 +286,7 @@ gulp.task('revreplace', ['revision'], () =>
 function distServer() {
   const serveStatic = require('serve-static');
   const finalhandler = require('finalhandler');
-  const serve = serveStatic('dist', { index: ['index.html'] });
+  const serve = serveStatic('dist'); // @TODO figure this out
   return http.createServer((req, res) => {
     serve(req, res, finalhandler(req, res));
   });
