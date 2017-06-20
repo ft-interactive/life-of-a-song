@@ -9,8 +9,11 @@ export default async (a, storyId, storyMetadata) => {
   const onwardJourney = await getOnwardJourney();
 
   d.id = storyMetadata.uuid;
+  d.url = `https://ig.ft.com/sites/life-of-a-song/${storyMetadata.storyId}`;
   d.headline = storyMetadata.headline;
+  d.title = d.headline;
   d.summary = storyMetadata.standfirst;
+  d.description = d.summary;
   d.mainImage.url = `https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod-us.s3.amazonaws.com%2F${storyMetadata.masterimageuuid}?source=next&fit=scale-down&width=700`;
   d.mainImage.description = storyMetadata.masterimagecredit;
   d.publishedDate = new Date(storyMetadata.pubdate);
