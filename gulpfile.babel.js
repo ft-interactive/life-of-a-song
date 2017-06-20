@@ -317,8 +317,7 @@ gulp.task('test:preflight', ['test:install-selenium'], () => {
     group: 'preflight',
   }, (passed) => {
     if (passed) {
-      // process.exit();
-      process.exit(1); // @TODO fix tests so they go through each HTML page (not index.html)
+      process.exit();
     } else {
       process.exit(1);
     }
