@@ -286,7 +286,7 @@ gulp.task('revreplace', ['revision'], () =>
 function distServer() {
   const serveStatic = require('serve-static');
   const finalhandler = require('finalhandler');
-  const serve = serveStatic('dist');
+  const serve = serveStatic('dist'); // @TODO figure this out
   return http.createServer((req, res) => {
     serve(req, res, finalhandler(req, res));
   });
