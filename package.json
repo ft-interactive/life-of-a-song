@@ -45,6 +45,7 @@
     "gulp-sass": "^3.1.0",
     "gulp-util": "^3.0.8",
     "inline-source": "github:aendrew/inline-source",
+    "lodash.clonedeep": "^4.5.0",
     "markdown-it": "^8.2.2",
     "merge-stream": "^1.0.1",
     "nodemon": "^1.11.0",

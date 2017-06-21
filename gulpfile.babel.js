@@ -22,6 +22,7 @@ import autoprefixer from 'gulp-autoprefixer';
 import plumber from 'gulp-plumber';
 import http from 'http';
 import rename from 'gulp-rename';
+import cloneDeep from 'lodash.clonedeep';
 
 const ansiToHTML = new AnsiToHTML();
 
@@ -297,7 +298,7 @@ gulp.task('test:install-selenium', (done) => {
   selenium.install({ version: '2.53.1' }, done);
 });
 
-gulp.task('test:preflight', ['test:install-selenium'], () => {
+gulp.task('test:preflight', ['test:install-selenium'], async () => {
   const nightwatch = require('nightwatch');
 
   if (process.env.CIRCLE_PROJECT_REPONAME === 'starter-kit') {
@@ -310,16 +311,38 @@ gulp.task('test:preflight', ['test:install-selenium'], () => {
     return process.exit();
   }
 
-  distServer().listen(process.env.PORT || '3000');
+  const nwConfig = require('./nightwatch.json');
+  const storyIds = (await bertha.get(
+    '1B-nm2Cip5AU57KC9Yt03WM0JB5jSxNL0CFjJmyN2upo',
+    ['toc'], { republish: true })).toc.map(d => d.id);
 
-  return nightwatch.runner({ // eslint-disable-line consistent-return
-    config: 'nightwatch.json',
-    group: 'preflight',
-  }, (passed) => {
-    if (passed) {
-      process.exit();
-    } else {
-      process.exit(1);
-    }
-  });
+  try {
+    const results = await storyIds.reduce(async (q, storyId) => {
+      const col = await q;
+      const updatedConfig = cloneDeep(nwConfig.test_settings.default);
+
+      const server = distServer();
+      server.listen(process.env.PORT || '3000');
+
+      // This is the key bit — set launch_url to the file being tested
+      updatedConfig.launch_url = `http://localhost:3000/${storyId}.html`;
+
+      return col.concat(
+        new Promise((resolve, reject) => nightwatch.runner({
+          config: 'nightwatch.json',
+          group: 'preflight',
+        }, (passed) => {
+          server.close();
+          if (passed) {
+            return resolve(`${storyId} passed`);
+          }
+          return reject(`${storyId} failed`);
+        }, updatedConfig)));
+    }, Promise.resolve([]));
+
+    return results;
+  } catch (e) {
+    console.error(e);
+    process.exit(1);
+  }
 });

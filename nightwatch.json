@@ -22,7 +22,7 @@
     "default" : {
       "end_session_on_fail": false,
       "skip_testcases_on_fail": false,
-      "launch_url" : "http://localhost:3000",
+      "launch_url": "http://localhost:3000/",
       "selenium_port"  : 4444,
       "selenium_host"  : "localhost",
       "silent": true,
