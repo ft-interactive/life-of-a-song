@@ -101,6 +101,7 @@ function getBundlers(useWatchify) {
         packageCache: {},
         fullPaths: useWatchify,
         debug: useWatchify,
+        standalone: 'client',
       }),
 
       execute() {
@@ -150,7 +151,8 @@ function getBundlers(useWatchify) {
 gulp.task('default', (done) => {
   process.env.NODE_ENV = 'production';
   runSequence(
-    ['scripts', 'styles', 'build-pages', 'copy'],
+    ['copy'],
+    ['scripts', 'styles', 'build-pages'],
     ['html'/* 'images' */],
     ['revreplace'],
   done);
@@ -204,9 +206,7 @@ gulp.task('build-pages', async () => {
   delete require.cache[require.resolve('./config/article')];
   delete require.cache[require.resolve('./config/index')];
 
-  const toc = await bertha.get('1B-nm2Cip5AU57KC9Yt03WM0JB5jSxNL0CFjJmyN2upo', ['toc'], { republish: true }).then((data) => {
-    return data.toc;
-  });
+  const toc = await bertha.get('1B-nm2Cip5AU57KC9Yt03WM0JB5jSxNL0CFjJmyN2upo', ['toc'], { republish: true }).then(data => data.toc);
 
   const storyIds = toc.map(d => d.id);
   for (let i = 0; i < storyIds.length; i += 1) {
@@ -229,7 +229,6 @@ gulp.task('html', () =>
     .pipe(htmlmin({
       collapseWhitespace: true,
       processConditionalComments: true,
-      minifyJS: true,
     }))
     .pipe(gulp.dest('dist')),
 );
@@ -286,7 +285,7 @@ gulp.task('revreplace', ['revision'], () =>
 function distServer() {
   const serveStatic = require('serve-static');
   const finalhandler = require('finalhandler');
-  const serve = serveStatic('dist'); // @TODO figure this out
+  const serve = serveStatic('dist', { index: ['index.html'] });
   return http.createServer((req, res) => {
     serve(req, res, finalhandler(req, res));
   });
