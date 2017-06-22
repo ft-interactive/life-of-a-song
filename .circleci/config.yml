@@ -4,6 +4,7 @@ jobs:
     working_directory: ~/project
     docker:
       - image: node:7
+      - image: java:7
       - image: selenium/standalone-chrome:3.0.1
     steps:
       - checkout
