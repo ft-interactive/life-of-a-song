@@ -4,7 +4,7 @@ jobs:
     working_directory: ~/project
     docker:
       - image: node:7
-      - image: selenium/standalone-chrome:3.4.0
+      - image: elgalu/selenium:latest
     steps:
       - checkout
       - restore_cache:
