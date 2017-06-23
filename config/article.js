@@ -1,20 +1,21 @@
 export default () => ({ // eslint-disable-line
 
   // link file UUID
-  id: '855d4ef2-9abd-11e6-8f9b-70e3cabccfae',
+  id: '$uuid',
 
   // canonical URL of the published page
-  // https://ig.ft.com/sites/life-of-a-song/yesterday get filled in by the ./configure script
-  url: 'https://ig.ft.com/sites/life-of-a-song/yesterday',
+  // "$url" get filled in by the ./configure script
+  url: '$url',
 
   // To set an exact publish date do this:
   //       new Date('2016-05-17T17:11:22Z')
-  publishedDate: new Date('2016-11-07T05:29:34Z'),
+  publishedDate: new Date(),
 
-  headline: 'The Life of a Song: ‘Yesterday’',
+  headline: 'Politics and the English Language',
 
   // summary === standfirst (Summary is what the content API calls it)
-  summary: 'The song came to Paul McCartney in a dream one night in London in 1963',
+  summary: 'Political language is designed to make lies sound truthful' +
+           'and murder respectable, and to give an appearance of solidity to pure wind',
 
   topic: {
     name: 'Life of a Song',
@@ -22,33 +23,38 @@ export default () => ({ // eslint-disable-line
   },
 
   // relatedArticle: {
-  //   text: 'Life of a Song »',
-  //   url: 'https://www.ft.com/life-arts/life-of-a-song',
+  //   text: 'Related article »',
+  //   url: 'https://en.wikipedia.org/wiki/Politics_and_the_English_Language',
   // },
 
   mainImage: {
     title: '',
     description: '',
-    url: '',
-    width: 2048, // ensure correct width
-    height: 1152, // ensure correct height
+    credit: '',
+
+    // You can provide a UUID to an image and it was populate everything else
+    uuid: 'c4bf0be4-7c15-11e4-a7b8-00144feabdc0',
+
+    // You can also provide a URL
+    // url: 'https://image.webservices.ft.com/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2Fc4bf0be4-7c15-11e4-a7b8-00144feabdc0?source=ig&fit=scale-down&width=700',
   },
 
   // Byline can by a plain string, markdown, or array of authors
   // if array of authors, url is optional
   byline: [
-    { name: 'Bernadette McNulty', url: 'https://www.ft.com/stream/authorsId/NWE2MjU2ZjAtOGU5Mi00NDkyLWFmYWEtNzQzYzU4OGMwODI2-QXV0aG9ycw==' },
+    { name: 'Author One', url: '/foo/bar' },
+    { name: 'Author Two' },
   ],
 
   // Appears in the HTML <title>
-  title: 'The Life of a Song: ‘Yesterday’',
+  title: '',
 
   // meta data
-  description: 'The song came to Paul McCartney in a dream one night in London in 1963',
+  description: '',
 
   /*
   TODO: Select Twitter card type -
-        summary or summary_large_image
+        "summary" or "summary_large_image"
 
         Twitter card docs:
         https://dev.twitter.com/cards/markup
@@ -60,19 +66,35 @@ export default () => ({ // eslint-disable-line
         optional social meta data?
   */
   // General social
-  // socialImage: 'https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod-us.s3.amazonaws.com%2Fc72ccc9e-a289-11e6-aa83-bcb58d1d2193?source=next&fit=scale-down&width=700',
-  // socialHeadline: 'The Life of a Song: ‘Yesterday’',
-  // socialSummary: 'The song came to Paul McCartney in a dream one night in London in 1963',
+  // socialImage: '',
+  // socialHeadline: '',
+  // socialDescription: '',
+  // twitterCreator: '@author's_account', // shows up in summary_large_image cards
 
-  // TWITTER
+  // TWEET BUTTON CUSTOM TEXT
+  // tweetText: '',
+  // twitterRelatedAccounts: ['authors_account_here', 'ftdata'], // Twitter lists these as suggested accounts to follow after a user tweets (do not include @)
+
+  // Fill out the Facebook/Twitter metadata sections below if you want to
+  // override the "General social" options above
+
+  // TWITTER METADATA (for Twitter cards)
   // twitterImage: '',
-  // twitterCreator: '@individual's_account',
-  // tweetText:  '',
-  // twitterHeadline:  '',
+  // twitterHeadline: '',
+  // twitterDescription: '',
 
   // FACEBOOK
   // facebookImage: '',
   // facebookHeadline: '',
+  // facebookDescription: '',
+
+  //ADVERTISING
+  ads: {
+    // ad unit hierarchy makes ads more granular. Start with ft.com and /companies /markets /world as appropriate to your story
+    gptAdunit: 'ft.com/companies/european',
+    // granular targeting is optional and will be specified by the ads team
+    dftTargeting: '',
+  },
 
   tracking: {
 
@@ -91,7 +113,7 @@ export default () => ({ // eslint-disable-line
     /*
     Product name
 
-    This will usually default to IG
+    This will usually default to "IG"
     however another value may be needed
     */
     // product: '',
