@@ -20,7 +20,6 @@ import sass from 'gulp-sass';
 import util from 'gulp-util';
 import autoprefixer from 'gulp-autoprefixer';
 import plumber from 'gulp-plumber';
-import http from 'http';
 import rename from 'gulp-rename';
 
 const ansiToHTML = new AnsiToHTML();
@@ -101,6 +100,7 @@ function getBundlers(useWatchify) {
         packageCache: {},
         fullPaths: useWatchify,
         debug: useWatchify,
+        standalone: 'client',
       }),
 
       execute() {
@@ -150,7 +150,8 @@ function getBundlers(useWatchify) {
 gulp.task('default', (done) => {
   process.env.NODE_ENV = 'production';
   runSequence(
-    ['scripts', 'styles', 'build-pages', 'copy'],
+    ['copy'],
+    ['scripts', 'styles', 'build-pages'],
     ['html'/* 'images' */],
     ['revreplace'],
   done);
@@ -204,9 +205,7 @@ gulp.task('build-pages', async () => {
   delete require.cache[require.resolve('./config/article')];
   delete require.cache[require.resolve('./config/index')];
 
-  const toc = await bertha.get('1B-nm2Cip5AU57KC9Yt03WM0JB5jSxNL0CFjJmyN2upo', ['toc'], { republish: true }).then((data) => {
-    return data.toc;
-  });
+  const toc = await bertha.get('1B-nm2Cip5AU57KC9Yt03WM0JB5jSxNL0CFjJmyN2upo', ['toc'], { republish: true }).then(data => data.toc);
 
   const storyIds = toc.map(d => d.id);
   for (let i = 0; i < storyIds.length; i += 1) {
@@ -229,7 +228,6 @@ gulp.task('html', () =>
     .pipe(htmlmin({
       collapseWhitespace: true,
       processConditionalComments: true,
-      minifyJS: true,
     }))
     .pipe(gulp.dest('dist')),
 );
@@ -283,43 +281,3 @@ gulp.task('revreplace', ['revision'], () =>
 //   }))
 //   .pipe(gulp.dest('dist'))
 // );
-function distServer() {
-  const serveStatic = require('serve-static');
-  const finalhandler = require('finalhandler');
-  const serve = serveStatic('dist'); // @TODO figure this out
-  return http.createServer((req, res) => {
-    serve(req, res, finalhandler(req, res));
-  });
-}
-
-gulp.task('test:install-selenium', (done) => {
-  const selenium = require('selenium-standalone');
-  selenium.install({ version: '2.53.1' }, done);
-});
-
-gulp.task('test:preflight', ['test:install-selenium'], () => {
-  const nightwatch = require('nightwatch');
-
-  if (process.env.CIRCLE_PROJECT_REPONAME === 'starter-kit') {
-    console.info('Project is base starter-kit; bypassing preflight checks...');
-    return process.exit();
-  }
-
-  if (process.env.CIRCLE_BUILD_NUM === 1) {
-    console.info('Initial build; bypassing preflight checks...');
-    return process.exit();
-  }
-
-  distServer().listen(process.env.PORT || '3000');
-
-  return nightwatch.runner({ // eslint-disable-line consistent-return
-    config: 'nightwatch.json',
-    group: 'preflight',
-  }, (passed) => {
-    if (passed) {
-      process.exit();
-    } else {
-      process.exit(1);
-    }
-  });
-});
