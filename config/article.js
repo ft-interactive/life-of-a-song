@@ -18,8 +18,8 @@ export default () => ({ // eslint-disable-line
            'and murder respectable, and to give an appearance of solidity to pure wind',
 
   topic: {
-    name: 'Life of a Song',
-    url: 'https://www.ft.com/life-arts/life-of-a-song',
+    name: 'Music',
+    url: 'https://www.ft.com/arts/music',
   },
 
   // relatedArticle: {
