@@ -19,7 +19,7 @@ export default async (a, storyId, storyMetadata) => {
   d.publishedDate = new Date(storyMetadata.pubdate);
   d.byline = [{ name: storyMetadata.author, url: storyMetadata.authorlink }];
 
-  const textContent = await bertha.get('1B-nm2Cip5AU57KC9Yt03WM0JB5jSxNL0CFjJmyN2upo', [storyId], { republish: true }).then(data => data[storyId]);
+  const textContent = await bertha.get('1ofGFrK6_O_sZPvKuhOIhXruh-uzEqWXuXY7fP3miKcE', [storyId], { republish: true }).then(data => data[storyId]);
 
   const storyContent = textContent[0].text;
 

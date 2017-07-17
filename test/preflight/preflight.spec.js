@@ -11,7 +11,7 @@ const chai = require('chai');
 const { JSDOM } = require('jsdom');
 const { readFileSync } = require('fs');
 
-// const toc = await bertha.get('1B-nm2Cip5AU57KC9Yt03WM0JB5jSxNL0CFjJmyN2upo', ['toc'], { republish: true }).then(data => data.toc);
+// const toc = await bertha.get('1ofGFrK6_O_sZPvKuhOIhXruh-uzEqWXuXY7fP3miKcE', ['toc'], { republish: true }).then(data => data.toc);
 // const storyIds = data.toc.map(d => d.id);
 
 const storyIds = ['yesterday'];
