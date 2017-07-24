@@ -21,7 +21,7 @@ export default async (a, storyId, storyMetadata) => {
 
   const textContent = await bertha.get('1B-nm2Cip5AU57KC9Yt03WM0JB5jSxNL0CFjJmyN2upo', [storyId], { republish: true }).then(data => data[storyId]);
 
-  const storyContent = textContent[0].text;
+  const storyContent = textContent[0].text.replace('ft-ig-audio-prod.s3.amazonaws.com', 'ig-audio.ft.com');
 
   return {
     ...d,
