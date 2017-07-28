@@ -46,6 +46,9 @@ jobs:
       - store_artifacts:
           name: Store artifact (package-lock.json)
           path: package-lock.json
+      - run:
+          name: General QA checks
+          command: npm run qa || echo "Automatic QA checks failed. Continuing anyway"          
       - deploy:
           name: Deploy
           command: |
@@ -64,6 +67,3 @@ jobs:
             else
               npm run check-accessibility
             fi
-      - run:
-          name: General QA checks
-          command: npm run qa || echo "Automatic QA checks failed. Continuing anyway"
