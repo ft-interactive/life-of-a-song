@@ -4,7 +4,6 @@ import * as bertha from 'bertha-client';
 import browserify from 'browserify';
 import browserSync from 'browser-sync';
 import gulp from 'gulp';
-import mocha from 'gulp-mocha';
 import mergeStream from 'merge-stream';
 import path from 'path';
 import runSequence from 'run-sequence';
