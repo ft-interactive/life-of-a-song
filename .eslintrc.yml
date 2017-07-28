@@ -1,4 +1,6 @@
+extends: airbnb
+root: true
 rules:
-  no-unused-expressions: 0
+  import/no-extraneous-dependencies: [2, {}]
 env:
   mocha: true
