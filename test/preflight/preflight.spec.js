@@ -8,7 +8,6 @@
  */
 
 const argv = require('minimist')(process.argv.slice(2));
-const bertha = require('bertha-client');
 const chai = require('chai');
 const { JSDOM } = require('jsdom');
 const { readFileSync } = require('fs');
@@ -22,7 +21,6 @@ for (let i = 0; i < storyIds.length; i += 1) {
 
   const index = readFileSync(`${__dirname}/../../dist/${storyId}.html`, { encoding: 'utf-8' });
   const { document } = new JSDOM(index).window;
-  const should = chai.should();
 
   describe('preflight tests', () => {
     describe(`dist/${storyId}.html`, () => {
