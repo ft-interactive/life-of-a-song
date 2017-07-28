@@ -48,7 +48,7 @@ jobs:
           path: package-lock.json
       - run:
           name: General QA checks
-          command: npm run qa"          
+          command: npm run qa
       - deploy:
           name: Deploy
           command: |
