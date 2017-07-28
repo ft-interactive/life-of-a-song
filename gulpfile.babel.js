@@ -4,6 +4,7 @@ import * as bertha from 'bertha-client';
 import browserify from 'browserify';
 import browserSync from 'browser-sync';
 import gulp from 'gulp';
+import mocha from 'gulp-mocha';
 import mergeStream from 'merge-stream';
 import path from 'path';
 import runSequence from 'run-sequence';
@@ -44,6 +45,8 @@ const BROWSERIFY_TRANSFORMS = [
 const OTHER_SCRIPTS = [
   'components/core/top.js',
 ];
+
+const exec = require('child_process').exec;
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
@@ -281,3 +284,14 @@ gulp.task('revreplace', ['revision'], () =>
 //   }))
 //   .pipe(gulp.dest('dist'))
 // );
+
+gulp.task('qa', async (cb) => {
+  const toc = await bertha.get('1B-nm2Cip5AU57KC9Yt03WM0JB5jSxNL0CFjJmyN2upo', ['toc'], { republish: true }).then(data => data.toc);
+  const storyIds = toc.map(d => d.id);
+
+  exec(`mocha ./test/**/*.spec.js --config=${storyIds}`, (err, stdout, stderr) => {
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+  });
+});
