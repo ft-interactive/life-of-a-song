@@ -291,6 +291,5 @@ gulp.task('qa', async (cb) => {
   exec(`mocha ./test/**/*.spec.js --config=${storyIds}`, (err, stdout, stderr) => {
     console.log(stdout);
     console.log(stderr);
-    cb(err);
   });
 });

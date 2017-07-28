@@ -15,7 +15,6 @@ const { readFileSync } = require('fs');
 
 const should = chai.should();
 
-console.log('config', argv.config);
 const storyIds = argv.config.split(',');
 
 for (let i = 0; i < storyIds.length; i += 1) {
