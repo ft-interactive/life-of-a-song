@@ -80,7 +80,7 @@
     "postinstall": "bower install --allow-root",
     "prebuild": "npm run clean",
     "prestart": "npm run clean",
-    "qa": "mocha ./test/**/*.spec.js",
+    "qa": "gulp qa",
     "check-accessibility": "pa11y --threshold 100 $(ft-graphics-deploy --get-commit-url)",
     "check-accessibility:preview": "pa11y --threshold 100 $(ft-graphics-deploy --preview --get-commit-url)",
     "start": "nodemon --watch gulpfile.babel.js --exec 'gulp watch'"
