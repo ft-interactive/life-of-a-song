@@ -6,21 +6,21 @@
  * tracking is installed. It does not verify whether tracking is working or
  * whether any of the meta values are correct.
  */
-const bertha = require('bertha-client');
+
+const argv = require('minimist')(process.argv.slice(2));
 const chai = require('chai');
 const { JSDOM } = require('jsdom');
 const { readFileSync } = require('fs');
 
-// const toc = await bertha.get('1B-nm2Cip5AU57KC9Yt03WM0JB5jSxNL0CFjJmyN2upo', ['toc'], { republish: true }).then(data => data.toc);
-// const storyIds = data.toc.map(d => d.id);
+const should = chai.should();
 
-const storyIds = ['yesterday'];
+const storyIds = argv.config.split(',');
+
 for (let i = 0; i < storyIds.length; i += 1) {
   const storyId = storyIds[i];
 
   const index = readFileSync(`${__dirname}/../../dist/${storyId}.html`, { encoding: 'utf-8' });
   const { document } = new JSDOM(index).window;
-  const should = chai.should();
 
   describe('preflight tests', () => {
     describe(`dist/${storyId}.html`, () => {

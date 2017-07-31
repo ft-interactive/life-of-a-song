@@ -45,6 +45,8 @@ const OTHER_SCRIPTS = [
   'components/core/top.js',
 ];
 
+const exec = require('child_process').exec;
+
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 const copyGlob = OTHER_SCRIPTS.concat([
@@ -281,3 +283,13 @@ gulp.task('revreplace', ['revision'], () =>
 //   }))
 //   .pipe(gulp.dest('dist'))
 // );
+
+gulp.task('qa', async (cb) => {
+  const toc = await bertha.get('1B-nm2Cip5AU57KC9Yt03WM0JB5jSxNL0CFjJmyN2upo', ['toc'], { republish: true }).then(data => data.toc);
+  const storyIds = toc.map(d => d.id);
+
+  exec(`mocha ./test/**/*.spec.js --config=${storyIds}`, (err, stdout, stderr) => {
+    console.log(stdout);
+    console.log(stderr);
+  });
+});
