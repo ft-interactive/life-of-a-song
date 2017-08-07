@@ -284,7 +284,7 @@ gulp.task('revreplace', ['revision'], () =>
 //   .pipe(gulp.dest('dist'))
 // );
 
-gulp.task('qa', async (cb) => {
+gulp.task('qa', async () => {
   const toc = await bertha.get('1B-nm2Cip5AU57KC9Yt03WM0JB5jSxNL0CFjJmyN2upo', ['toc'], { republish: true }).then(data => data.toc);
   const storyIds = toc.map(d => d.id);
 
