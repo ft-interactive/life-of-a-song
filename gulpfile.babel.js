@@ -207,7 +207,7 @@ gulp.task('build-pages', async () => {
   delete require.cache[require.resolve('./config/article')];
   delete require.cache[require.resolve('./config/index')];
 
-  const {toc} = await bertha.get('1ofGFrK6_O_sZPvKuhOIhXruh-uzEqWXuXY7fP3miKcE', ['toc'], { republish: true });
+  const { toc } = await bertha.get('1ofGFrK6_O_sZPvKuhOIhXruh-uzEqWXuXY7fP3miKcE', ['toc'], { republish: true });
   const storyIds = toc.map(d => d.id);
   for (let i = 0; i < storyIds.length; i += 1) {
     const storyId = storyIds[i];
@@ -283,8 +283,8 @@ gulp.task('revreplace', ['revision'], () =>
 //   .pipe(gulp.dest('dist'))
 // );
 
-gulp.task('qa', async (cb) => {
-  const toc = await bertha.get('1B-nm2Cip5AU57KC9Yt03WM0JB5jSxNL0CFjJmyN2upo', ['toc'], { republish: true }).then(data => data.toc);
+gulp.task('qa', async () => {
+  const toc = await bertha.get('1ofGFrK6_O_sZPvKuhOIhXruh-uzEqWXuXY7fP3miKcE', ['toc'], { republish: true }).then(data => data.toc);
   const storyIds = toc.map(d => d.id);
 
   exec(`mocha ./test/**/*.spec.js --config=${storyIds}`, (err, stdout, stderr) => {
