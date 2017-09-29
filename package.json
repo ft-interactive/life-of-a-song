@@ -65,6 +65,7 @@
     "remove-markdown": "^0.1.0",
     "run-sequence": "^1.2.2",
     "serve-static": "^1.12.2",
+    "structured-google-docs-client": "github:Financial-Times/structured-google-docs-client#dev",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.9.0"
   },
