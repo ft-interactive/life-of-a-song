@@ -65,7 +65,6 @@
     "remove-markdown": "^0.1.0",
     "run-sequence": "^1.2.2",
     "serve-static": "^1.12.2",
-    "structured-google-docs-client": "github:Financial-Times/structured-google-docs-client#dev",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.9.0"
   },
@@ -86,5 +85,8 @@
     "check-accessibility": "pa11y --threshold 100 $(ft-graphics-deploy --get-commit-url)",
     "check-accessibility:preview": "pa11y --threshold 100 $(ft-graphics-deploy --preview --get-commit-url)",
     "start": "nodemon --watch gulpfile.babel.js --exec 'gulp watch'"
+  },
+  "dependencies": {
+    "structured-google-docs-client": "0.0.1"
   }
 }
