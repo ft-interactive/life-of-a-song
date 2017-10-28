@@ -87,6 +87,6 @@
     "start": "nodemon --watch gulpfile.babel.js --exec 'gulp watch'"
   },
   "dependencies": {
-    "structured-google-docs-client": "0.0.1"
+    "structured-google-docs-client": "^0.0.2"
   }
 }
