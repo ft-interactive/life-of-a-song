@@ -1,10 +1,17 @@
 import structuredGoogleDoc from 'structured-google-docs-client';
+import cheerio from 'cheerio';
 import article from './article';
 import getFlags from './flags';
 import getOnwardJourney from './onward-journey';
 
+const trim = thing => thing.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
+
 async function transform(a, b) {
-  return `<span class="g-audio">${a}<audio controls><source src="${b}" type="audio/mpeg"></audio></span>`;
+  // make sure to strip out tags in b
+  const $ = cheerio.load(b);
+  const audioSource = trim($.text());
+
+  return `<span class="g-audio">${a}<audio controls><source src="${audioSource}" type="audio/mpeg"></audio></span>`;
 }
 
 export default async (a, storyId, storyMetadata) => {
