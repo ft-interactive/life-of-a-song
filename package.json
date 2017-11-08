@@ -87,6 +87,7 @@
     "start": "nodemon --watch gulpfile.babel.js --exec 'gulp watch'"
   },
   "dependencies": {
-    "structured-google-docs-client": "0.0.1"
+    "cheerio": "^1.0.0-rc.2",
+    "structured-google-docs-client": "^0.0.2"
   }
 }
