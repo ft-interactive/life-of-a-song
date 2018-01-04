@@ -58,6 +58,10 @@ const copyGlob = OTHER_SCRIPTS.concat([
 
 ]);
 
+const delay = ms => new Promise((resolve) => {
+  setTimeout(resolve, ms);
+});
+
 // helpers
 let preventNextReload; // hack to keep a BS error notification on the screen
 function reload() {
@@ -220,6 +224,9 @@ gulp.task('build-pages', async () => {
       .pipe(gulpnunjucks.compile(null, { env: require('./views').configure() }))
       .pipe(rename(`${storyId}.html`))
       .pipe(gulp.dest('dist'));
+
+    // add in 4-second delay to avoid hitting user rate limit on Google Drive API
+    await delay(4000);
   }
 });
 
