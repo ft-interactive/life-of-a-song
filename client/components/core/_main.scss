@@ -13,12 +13,21 @@ body {
   &-head {
     margin-top: 18px;
     margin-bottom: 0;
+
+    .topper__tags {
+      padding-bottom: 5px;
+    }
+
+    .article__share {
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
   }
 
   &-body {
     div[data-o-grid-colspan] {
       & > div {
-        max-width: 700px;
+        max-width: 740px;
       }
     }
   }
@@ -54,7 +63,7 @@ body {
   }
 
   &-b-1 {
-    max-width: 700px;
+    max-width: 740px;
   }
 
 }
