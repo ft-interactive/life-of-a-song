@@ -13,6 +13,20 @@ body {
   &-head {
     margin-top: 18px;
     margin-bottom: 0;
+
+    .topper__tags {
+      padding-bottom: 5px;
+    }
+
+    h1.o-typography-headline,
+    p.o-typography-standfirst {
+      max-width: 700px;
+    }
+
+    .article__share {
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
   }
 
   &-body {
@@ -27,7 +41,7 @@ body {
 /* Hide whatsapp share button on desktop */
 .article__share {
   @include oGridRespondTo(S) {
-    .o-share__action--whatsapp {
+    .o-share__icon--whatsapp {
       display: none;
     }
   }
@@ -57,4 +71,8 @@ body {
     max-width: 700px;
   }
 
+}
+
+.o-typography-wrapper p {
+  line-height: 1.6em;
 }
