@@ -18,6 +18,11 @@ body {
       padding-bottom: 5px;
     }
 
+    h1.o-typography-headline,
+    p.o-typography-standfirst {
+      max-width: 700px;
+    }
+
     .article__share {
       margin-top: 15px;
       margin-bottom: 15px;
@@ -27,7 +32,7 @@ body {
   &-body {
     div[data-o-grid-colspan] {
       & > div {
-        max-width: 740px;
+        max-width: 700px;
       }
     }
   }
@@ -36,7 +41,7 @@ body {
 /* Hide whatsapp share button on desktop */
 .article__share {
   @include oGridRespondTo(S) {
-    .o-share__action--whatsapp {
+    .o-share__icon--whatsapp {
       display: none;
     }
   }
@@ -63,7 +68,11 @@ body {
   }
 
   &-b-1 {
-    max-width: 740px;
+    max-width: 700px;
   }
 
+}
+
+.o-typography-wrapper p {
+  line-height: 1.6em;
 }
