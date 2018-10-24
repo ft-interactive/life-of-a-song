@@ -226,7 +226,9 @@ gulp.task('build-pages', async () => {
       .pipe(gulp.dest('dist'));
 
     // add in 4-second delay to avoid hitting user rate limit on Google Drive API
-    await delay(4000);
+    if (storyIds.length > 1) {
+      await delay(4000);
+    }
   }
 });
 

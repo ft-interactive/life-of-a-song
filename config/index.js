@@ -33,7 +33,10 @@ export default async (a, storyId, storyMetadata) => {
   d.byline = [{ name: storyMetadata.author, url: storyMetadata.authorlink }];
 
   const textContent = await structuredGoogleDoc(storyMetadata.googledocid, { transform });
-  const storyContent = (textContent ? textContent.replace('ft-ig-audio-prod.s3.amazonaws.com', 'ig-audio.ft.com') : textContent);
+  let storyContent = (textContent ? textContent.replace('ft-ig-audio-prod.s3.amazonaws.com', 'ig-audio.ft.com') : textContent);
+
+  // Youtube link hotfix => convert /watch?v%3D_ to /watch?v=
+  storyContent = storyContent.replace(/\/watch\?v%3D/g, '/watch?v=');
 
   return {
     ...d,
