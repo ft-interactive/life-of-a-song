@@ -294,7 +294,7 @@ gulp.task('revreplace', ['revision'], () =>
 // );
 
 gulp.task('qa', async () => {
-  const toc = await bertha.get('1B-nm2Cip5AU57KC9Yt03WM0JB5jSxNL0CFjJmyN2upo', ['toc'], { republish: true }).then(data => data.toc);
+  const toc = await bertha.get('1lG-G-d1XPYLjt2eiPwKCvpwz-EUKkQUazQXAqfrOY_U', ['toc'], { republish: true }).then(data => data.toc);
   const storyIds = toc.map(d => d.id);
 
   exec(`mocha ./test/**/*.spec.js --config=${storyIds}`, (err, stdout, stderr) => {
