@@ -17,7 +17,7 @@ async function transform(a, b) {
 export default async (a, storyId, storyMetadata) => {
   const d = await article();
   const flags = await getFlags();
-  const onwardJourney = await getOnwardJourney();
+  const onwardJourney = await getOnwardJourney(storyMetadata.onwardjourneyuuid);
 
   d.id = storyMetadata.uuid;
   d.url = `https://ig.ft.com/sounds/${storyId}.html`;
@@ -26,6 +26,7 @@ export default async (a, storyId, storyMetadata) => {
   d.summary = storyMetadata.standfirst;
   d.topic.name = storyMetadata.topic;
   d.topic.url = storyMetadata.topiclink;
+  d.onwardjourneyuuid = storyMetadata.onwardjourneyuuid;
   d.description = d.summary;
   d.mainImage.uuid = storyMetadata.masterimageuuid;
   d.mainImage.description = storyMetadata.masterimagecredit;

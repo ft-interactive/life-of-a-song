@@ -13,7 +13,7 @@
     ]
   },
   "devDependencies": {
-    "@financial-times/g-deploy": "^3.0.2",
+    "@financial-times/g-deploy": "^3.0.8",
     "ansi-to-html": "^0.6.2",
     "axios": "^0.16.1",
     "babel-core": "^6.24.1",

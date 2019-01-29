@@ -1,5 +1,5 @@
-export default () => ({
+export default (uuid) => ({
   relatedContent: [
-    { rows: 1, list: 'thing/1eb4d2f2-618a-39ea-99cf-5cf11287e853' },
+    { rows: 1, list: `thing/${uuid || 'a8294ac3-9e1e-33a2-b317-60120fee2ba3'}` },
   ],
 });
