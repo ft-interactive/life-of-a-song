@@ -2,7 +2,7 @@
 
 >
 
-[![Build Status][circle-image]][circle-url] [![Dependency Status][devdeps-image]][devdeps-url]
+[![Build Status][circle-image]][circle-url] [![Dependency Status][devdeps-image]][devdeps-url] 
 
 This project was scaffolded with [Starter Kit @2a50275](https://github.com/ft-interactive/starter-kit/tree/2a50275).
 
