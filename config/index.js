@@ -25,10 +25,19 @@ export default async (a, storyId, storyMetadata) => {
   d.title = d.headline;
   d.summary = storyMetadata.standfirst;
   d.description = d.summary;
-  d.mainImage.uuid = storyMetadata.masterimageuuid;
   d.mainImage.description = storyMetadata.masterimagecredit;
   d.publishedDate = new Date(storyMetadata.pubdate);
   d.byline = [{ name: storyMetadata.author, url: storyMetadata.authorlink }];
+
+  // if a URL is passed into the masterimageuuid field, then just use the URL
+  // otherwise, use the UUID
+  if (/^http/.test(storyMetadata.masterimageuuid)) {
+    d.mainImage.url = storyMetadata.masterimageuuid;
+    delete d.mainImage.uuid;
+  } else {
+    d.mainImage.uuid = storyMetadata.masterimageuuid;
+    delete d.mainImage.url;
+  }
 
   const textContent = await structuredGoogleDoc(storyMetadata.googledocid, { transform });
   let storyContent = (textContent ? textContent.replace('ft-ig-audio-prod.s3.amazonaws.com', 'ig-audio.ft.com') : textContent);
