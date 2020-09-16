@@ -36,7 +36,7 @@ export default () => ({ // eslint-disable-line
     uuid: 'c4bf0be4-7c15-11e4-a7b8-00144feabdc0',
 
     // You can also provide a URL
-    // url: 'https://image.webservices.ft.com/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2Fc4bf0be4-7c15-11e4-a7b8-00144feabdc0?source=ig&fit=scale-down&width=700',
+    url: 'https://image.webservices.ft.com/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2Fc4bf0be4-7c15-11e4-a7b8-00144feabdc0?source=ig&fit=scale-down&width=700',
   },
 
   // Byline can by a plain string, markdown, or array of authors
@@ -88,7 +88,7 @@ export default () => ({ // eslint-disable-line
   // facebookHeadline: '',
   // facebookDescription: '',
 
-  //ADVERTISING
+  // ADVERTISING
   ads: {
     // ad unit hierarchy makes ads more granular. Start with ft.com and /companies /markets /world as appropriate to your story
     gptAdunit: 'ft.com/companies/european',
