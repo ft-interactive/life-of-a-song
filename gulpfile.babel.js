@@ -1,51 +1,51 @@
 /* eslint-disable no-console, global-require, import/no-extraneous-dependencies */
-import * as bertha from "bertha-client";
+import * as bertha from 'bertha-client';
 
-import browserify from "browserify";
-import browserSync from "browser-sync";
-import gulp from "gulp";
-import mergeStream from "merge-stream";
-import path from "path";
-import source from "vinyl-source-stream";
-import watchify from "watchify";
-import AnsiToHTML from "ansi-to-html";
-import gulpnunjucks from "gulp-nunjucks";
-import inlineSource from "gulp-inline-source";
-import htmlmin from "gulp-htmlmin";
-import rev from "gulp-rev";
-import revReplace from "gulp-rev-replace";
-import gulpdata from "gulp-data";
-import util from "gulp-util";
-import autoprefixer from "gulp-autoprefixer";
-import rename from "gulp-rename";
-import dartSass from "sass";
-import gulpSass from "gulp-sass";
+import browserify from 'browserify';
+import browserSync from 'browser-sync';
+import gulp from 'gulp';
+import mergeStream from 'merge-stream';
+import path from 'path';
+import source from 'vinyl-source-stream';
+import watchify from 'watchify';
+import AnsiToHTML from 'ansi-to-html';
+import gulpnunjucks from 'gulp-nunjucks';
+import inlineSource from 'gulp-inline-source';
+import htmlmin from 'gulp-htmlmin';
+import rev from 'gulp-rev';
+import revReplace from 'gulp-rev-replace';
+import gulpdata from 'gulp-data';
+import util from 'gulp-util';
+import autoprefixer from 'gulp-autoprefixer';
+import rename from 'gulp-rename';
+import dartSass from 'sass';
+import gulpSass from 'gulp-sass';
 
 const sass = gulpSass(dartSass);
 
 const ansiToHTML = new AnsiToHTML();
 
 const AUTOPREFIXER_BROWSERS = [
-  "ie >= 8",
-  "ff >= 30",
-  "chrome >= 34",
-  "iOS >= 7",
-  "Safari >= 7",
+  'ie >= 8',
+  'ff >= 30',
+  'chrome >= 34',
+  'iOS >= 7',
+  'Safari >= 7',
 ];
 
-const BROWSERIFY_ENTRIES = ["index.js"];
+const BROWSERIFY_ENTRIES = ['index.js'];
 
-const BROWSERIFY_TRANSFORMS = ["babelify", "debowerify"];
+const BROWSERIFY_TRANSFORMS = ['babelify', 'debowerify'];
 
-const OTHER_SCRIPTS = ["components/core/top.js"];
+const OTHER_SCRIPTS = ['components/core/top.js'];
 
-const exec = require("child_process").exec;
+const exec = require('child_process').exec;
 
-process.env.NODE_ENV = process.env.NODE_ENV || "development";
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 const copyGlob = OTHER_SCRIPTS.concat([
-  "client/**/*",
-  "!client/**/*.{html,scss}",
+  'client/**/*',
+  '!client/**/*.{html,scss}',
 
   // REPLACE: if using imagmin
   // '!client/**/*.{jpg,png,gif,svg}',
@@ -59,7 +59,7 @@ const delay = (ms) =>
 // helpers
 
 function handleBuildError(headline, error) {
-  if (process.env.NODE_ENV === "development") {
+  if (process.env.NODE_ENV === 'development') {
     // show in the terminal
     util.log(headline, error && error.stack);
 
@@ -68,7 +68,7 @@ function handleBuildError(headline, error) {
 
     if (error) {
       report += `<pre style="text-align:left;max-width:800px">${ansiToHTML.toHtml(
-        error.stack
+        error.stack,
       )}</pre>`;
     }
 
@@ -76,7 +76,7 @@ function handleBuildError(headline, error) {
     preventNextReload = true;
 
     // allow the sass/js task to end successfully, so the process can continue
-    this.emit("end");
+    this.emit('end');
   } else throw error;
 }
 
@@ -84,19 +84,19 @@ function handleBuildError(headline, error) {
 function getBundlers(useWatchify) {
   return BROWSERIFY_ENTRIES.map((entry) => {
     const bundler = {
-      b: browserify(path.posix.resolve("client", entry), {
+      b: browserify(path.posix.resolve('client', entry), {
         cache: {},
         packageCache: {},
         fullPaths: useWatchify,
         debug: useWatchify,
-        standalone: "client",
+        standalone: 'client',
       }),
 
       execute() {
         const stream = this.b
           .bundle()
-          .on("error", function browserifyError(error) {
-            handleBuildError.call(this, "Error building JavaScript", error);
+          .on('error', function browserifyError(error) {
+            handleBuildError.call(this, 'Error building JavaScript', error);
           })
           .pipe(source(entry));
 
@@ -112,7 +112,7 @@ function getBundlers(useWatchify) {
         //    .pipe(gulpsourcemaps.write('./'));
         // }
 
-        return stream.pipe(gulp.dest("dist"));
+        return stream.pipe(gulp.dest('dist'));
       },
     };
 
@@ -124,9 +124,9 @@ function getBundlers(useWatchify) {
     // upgrade to watchify if we're in 'serve' mode
     if (useWatchify) {
       bundler.b = watchify(bundler.b);
-      bundler.b.on("update", () => {
+      bundler.b.on('update', () => {
         // re-run the bundler then reload the browser
-        bundler.execute().on("end", reload);
+        bundler.execute().on('end', 'reload');
       });
     }
 
@@ -140,7 +140,7 @@ function getBundlers(useWatchify) {
 
 // reload
 let preventNextReload; // hack to keep a BS error notification on the screen
-gulp.task("reload", (cb) => {
+gulp.task('reload', (cb) => {
   if (preventNextReload) {
     preventNextReload = false;
     return;
@@ -149,14 +149,14 @@ gulp.task("reload", (cb) => {
   cb();
 });
 
-gulp.task("build-pages", async (cb) => {
-  delete require.cache[require.resolve("./views")];
-  delete require.cache[require.resolve("./config/flags")];
-  delete require.cache[require.resolve("./config/article")];
-  delete require.cache[require.resolve("./config/index")];
+gulp.task('build-pages', async (cb) => {
+  delete require.cache[require.resolve('./views')];
+  delete require.cache[require.resolve('./config/flags')];
+  delete require.cache[require.resolve('./config/article')];
+  delete require.cache[require.resolve('./config/index')];
 
   const toc = await bertha
-    .get("1B-nm2Cip5AU57KC9Yt03WM0JB5jSxNL0CFjJmyN2upo", ["toc"], {
+    .get('1B-nm2Cip5AU57KC9Yt03WM0JB5jSxNL0CFjJmyN2upo', ['toc'], {
       republish: true,
     })
     .then((data) => data.toc);
@@ -167,16 +167,16 @@ gulp.task("build-pages", async (cb) => {
     const storyMetadata = toc.filter((s) => s.id === storyId)[0];
 
     gulp
-      .src("client/**/*.html")
+      .src('client/**/*.html')
       // .pipe(plumber())
       .pipe(
         gulpdata(async (d) =>
-          require("./config").default(d, storyId, storyMetadata)
+          require('./config').default(d, storyId, storyMetadata)
         )
       )
-      .pipe(gulpnunjucks.compile(null, { env: require("./views").configure() }))
+      .pipe(gulpnunjucks.compile(null, { env: require('./views').configure() }))
       .pipe(rename(`${storyId}.html`))
-      .pipe(gulp.dest("dist"));
+      .pipe(gulp.dest('dist'));
 
     // add in 4-second delay to avoid hitting user rate limit on Google Drive API
     if (storyIds.length > 1) {
@@ -188,15 +188,15 @@ gulp.task("build-pages", async (cb) => {
 });
 
 // copies over miscellaneous files (client => dist)
-gulp.task("copy", (cb) => {
-  gulp.src(copyGlob, { dot: true, allowEmpty: true }).pipe(gulp.dest("dist"));
+gulp.task('copy', (cb) => {
+  gulp.src(copyGlob, { dot: true, allowEmpty: true }).pipe(gulp.dest('dist'));
   cb();
 });
 
 // minifies all HTML, CSS and JS (dist & client => dist)
-gulp.task("html", (cb) => {
+gulp.task('html', (cb) => {
   gulp
-    .src("dist/**/*.html")
+    .src('dist/**/*.html')
     .pipe(inlineSource())
     .pipe(
       htmlmin({
@@ -205,61 +205,61 @@ gulp.task("html", (cb) => {
         minifyJS: true,
       })
     )
-    .pipe(gulp.dest("dist"));
+    .pipe(gulp.dest('dist'));
   cb();
 });
 
 // task to do a straightforward browserify bundle (build only)
-gulp.task("scripts", (cb) => {
+gulp.task('scripts', (cb) => {
   mergeStream(getBundlers().map((bundler) => bundler.execute()));
   cb();
 });
 
 // builds stylesheets with sass/autoprefixer
-gulp.task("styles", (cb) => {
+gulp.task('styles', (cb) => {
   gulp
-    .src("client/**/*.scss")
+    .src('client/**/*.scss')
     .pipe(
       sass({
-        includePaths: "node_modules",
+        includePaths: 'node_modules',
         outputStyle:
-          process.env.NODE_ENV === "production" ? "compressed" : "expanded",
-      }).on("error", function sassError(error) {
-        handleBuildError.call(this, "Error building Sass", error);
+          process.env.NODE_ENV === 'production' ? 'compressed' : 'expanded',
+      }).on('error', function sassError(error) {
+        handleBuildError.call(this, 'Error building Sass', error);
       })
     )
     .pipe(autoprefixer({ overrideBrowserslist: AUTOPREFIXER_BROWSERS }))
-    .pipe(gulp.dest("dist"));
+    .pipe(gulp.dest('dist'));
   cb();
 });
 
 // renames asset files and adds a rev-manifest.json
-gulp.task("revision", (cb) => {
+gulp.task('revision', (cb) => {
   gulp
-    .src(["dist/**/*.css", "dist/**/*.js"])
+    .src(['dist/**/*.css', 'dist/**/*.js'])
     .pipe(rev())
-    .pipe(gulp.dest("dist"))
+    .pipe(gulp.dest('dist'))
     .pipe(rev.manifest())
-    .pipe(gulp.dest("dist"));
+    .pipe(gulp.dest('dist'));
   cb();
 });
 
 // edits html to reflect changes in rev-manifest.json
-gulp.task("revreplace", gulp.series("revision"), (cb) => {
+gulp.task('revreplace', gulp.series('revision'), (cb) => {
   gulp
-    .src("dist/**/*.html")
-    .pipe(revReplace({ manifest: gulp.src("./dist/rev-manifest.json") }))
-    .pipe(gulp.dest("dist"));
+    .src('dist/**/*.html')
+    .pipe(revReplace({ manifest: gulp.src('./dist/rev-manifest.json') }))
+    .pipe(gulp.dest('dist'));
   cb();
 });
 
 // runs a development server (serving up dist and client)
 gulp.task(
-  "watch",
+  'watch',
   gulp.series([
-    "styles",
-    "build-pages",
-    "copy",
+    'styles',
+    'build-pages',
+    'copy',
     (done) => {
       const bundlers = getBundlers(true);
 
@@ -269,30 +269,23 @@ gulp.task(
       );
       initialBundles.resume(); // (otherwise never emits 'end')
 
-      initialBundles.on("end", () => {
+      initialBundles.on('end', () => {
         // use browsersync to serve up the development app
         browserSync({
           notify: true,
-          open: process.argv.includes("--open"),
-          ui: process.argv.includes("--bsui"),
-          ghostMode: process.argv.includes("--ghost"),
-          port: process.env.PORT || "3000",
+          open: process.argv.includes('--open'),
+          ui: process.argv.includes('--bsui'),
+          ghostMode: process.argv.includes('--ghost'),
+          port: process.env.PORT || '3000',
           server: {
-            baseDir: "dist",
+            baseDir: 'dist',
           },
         });
 
         // refresh browser after other changes
-        gulp.watch(
-          [
-            "client/**/*.{html,md}",
-            "views/**/*.{js,html}",
-            "config/*.{js,json}",
-          ],
-          ["build-pages", reload]
-        );
-        gulp.watch(["client/**/*.scss"], ["styles", reload]);
-        gulp.watch(copyGlob, ["copy", reload]);
+        gulp.watch(['client/**/*.{html,md}', 'views/**/*.{js,html}', 'config/**/*'], gulp.series(['reload', 'build-pages']));
+        gulp.watch(['client/styles/**/*.scss'], gulp.series(['reload', 'styles']));
+        gulp.watch(copyGlob, gulp.series(['reload', 'copy']));
 
         // UNCOMMENT IF USING IMAGEMIN
         // gulp.watch(['client/images/**/*'], reload);
@@ -330,18 +323,18 @@ gulp.task(
 
 // makes a production build (client => dist)
 gulp.task(
-  "default",
+  'default',
   gulp.series([
     (done) => {
-      process.env.NODE_ENV = "production";
+      process.env.NODE_ENV = 'production';
       done();
     },
-    "copy",
-    "build-pages",
-    "styles",
-    "scripts",
-    "html",
-    "revreplace",
+    'copy',
+    'build-pages',
+    'styles',
+    'scripts',
+    'html',
+    'revreplace',
     (cb) => {
       cb();
     },

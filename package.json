@@ -58,7 +58,7 @@
     "merge-stream": "^1.0.1",
     "minimist": "^1.2.0",
     "mocha": "^3.4.2",
-    "nodemon": "^1.11.0",
+    "nodemon": "^1.19.4",
     "nunjucks": "^3.0.0",
     "nunjucks-markdown": "^2.0.1",
     "pa11y": "^4.10.0",
