@@ -17,9 +17,6 @@ jobs:
       - restore_cache:
           name: Restore cache (node_modules)
           key: node_modules-{{ checksum "/tmp/package-lock.json" }}
-      - restore_cache:
-          name: Restore cache (bower_components)
-          key: bower_components-hack1-{{ checksum "bower.json" }}
       - run:
           name: Install dependencies
           # NB. this also does bower install as postinstall step
@@ -32,11 +29,6 @@ jobs:
           key: node_modules-{{ checksum "/tmp/package-lock.json" }}
           paths:
             - node_modules/
-      - save_cache:
-          name: Save cache (bower_components)
-          key: bower_components-hack1-{{ checksum "bower.json" }}
-          paths:
-            - bower_components/
       - run:
           name: ESLint
           command: npm run lint
