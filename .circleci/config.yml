@@ -7,11 +7,6 @@ jobs:
     docker:
       - image: cimg/python:3.7.9-node
     steps:
-      - run:
-          name: Install OpenSSH 8.1p1
-          command: |
-            sudo apt-get update
-            mkdir ~/tempdownload; cd ~/tempdownload; wget https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-8.1p1.tar.gz; tar zxvf openssh-8.1p1.tar.gz; cd openssh-8.1p1 && ./configure && make && sudo make install
       - checkout
       - run:
           name: Backup package-lock.json
