@@ -1,8 +1,0 @@
-{
-  "name": "starter-kit",
-  "private": true,
-  "dependencies": {
-    "o-colors": "^4.2.0",
-    "o-grid": "^4.3.8"
-  }
-}
