@@ -4,8 +4,9 @@ orbs:
 jobs:
   build:
     working_directory: ~/project
-    docker:
-      - image: cimg/ruby:3.0.2
+    executor:
+      name: node/default
+      tag: '12.22.10-browsers'
     steps:
       - checkout
       - run:
