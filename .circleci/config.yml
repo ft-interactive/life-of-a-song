@@ -1,9 +1,11 @@
 version: 2.1
 orbs:
-  node: cimg/python:3.10.2-browsers
+  browser-tools: circleci/browser-tools@1.1
 jobs:
   build:
     working_directory: ~/project
+    docker:
+      - image: cimg/python:3.10.2-browsers
     steps:
       - checkout
       - run:
