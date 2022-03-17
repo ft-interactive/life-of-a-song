@@ -311,15 +311,15 @@ gulp.task(
 //   .pipe(gulp.dest('dist'))
 // );
 
-// gulp.task('qa', async () => {
-//   const toc = await bertha.get('1B-nm2Cip5AU57KC9Yt03WM0JB5jSxNL0CFjJmyN2upo', ['toc'], { republish: true }).then(data => data.toc);
-//   const storyIds = toc.map(d => d.id);
+gulp.task('qa', async () => {
+  const toc = await bertha.get('1B-nm2Cip5AU57KC9Yt03WM0JB5jSxNL0CFjJmyN2upo', ['toc'], { republish: true }).then(data => data.toc);
+  const storyIds = toc.map(d => d.id);
 
-//   exec(`mocha ./test/**/*.spec.js --config=${storyIds}`, (err, stdout, stderr) => {
-//     console.log(stdout);
-//     console.log(stderr);
-//   });
-// });
+  exec(`mocha ./test/**/*.spec.js --config=${storyIds}`, (err, stdout, stderr) => {
+    console.log(stdout);
+    console.log(stderr);
+  });
+});
 
 // makes a production build (client => dist)
 gulp.task(
