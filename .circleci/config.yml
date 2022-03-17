@@ -1,9 +1,12 @@
-version: 2
+version: 2.1
+orbs:
+  node: circleci/node@4.7.0
 jobs:
   build:
     working_directory: ~/project
-    docker:
-      - image: circleci/node:9
+    executor:
+      name: node/default
+      tag: '16.13-browsers'
     steps:
       - checkout
       - run:
