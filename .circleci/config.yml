@@ -1,12 +1,9 @@
 version: 2.1
 orbs:
-  node: circleci/node@4.7.0
+  node: cimg/python:3.10.2-browsers
 jobs:
   build:
     working_directory: ~/project
-    executor:
-      name: node/default
-      tag: '16.13-browsers'
     steps:
       - checkout
       - run:
