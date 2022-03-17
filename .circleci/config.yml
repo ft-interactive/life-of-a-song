@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/project
     docker:
-      - image: cimg/node:12
+      - image: cimg/node:12.22.10-browsers
     steps:
       - checkout
       - run:
