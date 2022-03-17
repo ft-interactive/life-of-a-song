@@ -89,6 +89,7 @@
     "@financial-times/o-colors": "^6.4.2",
     "@financial-times/o-grid": "^6.1.5",
     "cheerio": "^1.0.0-rc.2",
+    "node-uuid": "^1.4.8",
     "sass": "^1.49.9",
     "structured-google-docs-client": "^0.0.3"
   }

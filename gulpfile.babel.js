@@ -221,7 +221,7 @@ gulp.task("styles", (cb) => {
     .src("client/**/*.scss")
     .pipe(
       sass({
-        includePaths: "bower_components",
+        includePaths: "node_modules",
         outputStyle:
           process.env.NODE_ENV === "production" ? "compressed" : "expanded",
       }).on("error", function sassError(error) {
