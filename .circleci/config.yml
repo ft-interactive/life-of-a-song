@@ -1,9 +1,11 @@
 version: 2
+orbs:
+  node: circleci/node@4.7.0
 jobs:
   build:
     working_directory: ~/project
     docker:
-      - image: cimg/node:12.22.10-browsers
+      - image: cimg/ruby:3.0.2
     steps:
       - checkout
       - run:
