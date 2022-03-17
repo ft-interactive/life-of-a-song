@@ -3,12 +3,8 @@ jobs:
   build:
     working_directory: ~/project
     docker:
-      - image: circleci/node:9
+      - image: cimg/node:17.7.1
     steps:
-      - run: # to address issue of RSA key with SHA-1 which is no longer allowed
-          name: Install OpenSSH
-          command: |
-            apt update -y && apt install -y openssh-client
       - checkout
       - run:
           name: Backup package-lock.json
