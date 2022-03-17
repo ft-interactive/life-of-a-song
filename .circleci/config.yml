@@ -4,9 +4,8 @@ orbs:
 jobs:
   build:
     working_directory: ~/project
-    executor:
-      name: node/default
-      tag: '12.22.10-browsers'
+    docker:
+      - image: cimg/python:3.7.9-node
     steps:
       - run:
           name: Install OpenSSH 8.1p1
