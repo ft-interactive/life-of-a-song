@@ -121,6 +121,7 @@
     "structured-google-docs-client": "^0.0.3"
   },
   "reactSnap": {
-    "source": "dist"
+    "source": "dist",
+    "include": []
   }
 }
