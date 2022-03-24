@@ -54,7 +54,7 @@ export default async (environment = 'development', storyId, storyMetadata) => {
   storyContent = storyContent.replace(/\/watch\?v%3D/g, '/watch?v=');
 
   // Remove underline markup around anchor tags
-  storyContent = storyContent.replace(/<u><a(.*)<\/a><\/u>/g, '<a$1</a>');
+  storyContent = storyContent.replace(/<u><a(.*?)<\/a><\/u>/g, '<a$1</a>');
 
   return {
     ...d,
