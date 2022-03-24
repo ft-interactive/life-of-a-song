@@ -15,6 +15,14 @@ $system-code: 'ig-projects';
   margin-bottom: 2px;
 }
 
+@include oGridRespondTo(XL) {
+  .g-audio.g-audio--initialized .g-audio--playbutton:before,
+  .g-audio.g-audio--initialized.g-audio-pause .g-audio--playbutton:before {
+    margin-top: 0;
+    margin-bottom: 4px;
+  }
+}
+
 .inline-image {
   width: 100%;
 
