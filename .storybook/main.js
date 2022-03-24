@@ -1,14 +1,10 @@
 const { dirname, resolve } = require('path');
-const { getVVCRoot } = require('../app/util/isVVCInstalled');
-
-const vvcRoot = getVVCRoot();
 
 module.exports = {
   stories: [
     '../app/components/**/*.stories.mdx',
     '../app/components/**/*.stories.@(js|jsx|ts|tsx)',
     '../node_modules/@financial-times/g-components/src/**/*.stories.@(js|mdx)',
-    vvcRoot && `${vvcRoot}/**/*.stories.@(js|mdx)`,
   ].filter((i) => i),
   addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
   babel: (config) => {
@@ -44,7 +40,6 @@ module.exports = {
         dirname(require.resolve('@financial-times/g-components/package.json')),
         'src'
       ),
-      '@financial-times/vvc': vvcRoot || '',
     };
 
     return config;

@@ -12,7 +12,6 @@ import GenerateJsonPlugin from 'generate-json-webpack-plugin';
 import { resolve, dirname } from 'path';
 import * as bertha from 'bertha-client';
 import getContext from './config';
-import { getVVCRoot } from './app/util/isVVCInstalled';
 
 const buildTime = new Date();
 
@@ -20,7 +19,6 @@ const delay = (ms) => new Promise((a) => setTimeout(a, ms));
 
 module.exports = async (env = 'development') => {
   const IS_DEV = env === 'development';
-  const vvcRoot = getVVCRoot();
 
   const BASE_CONFIG = {
     mode: env,
@@ -31,7 +29,6 @@ module.exports = async (env = 'development') => {
           dirname(require.resolve('@financial-times/g-components/package.json')),
           'src'
         ),
-        '@financial-times/vvc': vvcRoot || '',
       },
     },
     output: {

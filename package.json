@@ -83,7 +83,6 @@
   },
   "optionalDependencies": {
     "@financial-times/g-deploy": "^3.1.0",
-    "@financial-times/vvc": "github:financial-times/visual-vocabulary-components#prerelease",
     "react-snap": "^1.23.0"
   },
   "private": true,
