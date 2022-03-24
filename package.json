@@ -87,8 +87,8 @@
   },
   "private": true,
   "scripts": {
-    "build": "rm -rf dist && webpack -p --env=production",
-    "postbuild": "react-snap",
+    "build": "rm -rf dist && touch dist/index.html && webpack -p --env=production",
+    "postbuild": "react-snap && rm dist/index.html",
     "a11y": "pa11y $(g-deploy --get-commit-url)",
     "a11y:preview": "pa11y $(g-deploy --preview --get-commit-url)",
     "a11y:local": "pa11y localhost:8080",
@@ -120,7 +120,6 @@
     "structured-google-docs-client": "^0.0.3"
   },
   "reactSnap": {
-    "source": "dist",
-    "include": []
+    "source": "dist"
   }
 }
