@@ -87,7 +87,7 @@
   },
   "private": true,
   "scripts": {
-    "build": "rm -rf dist && touch dist/index.html && webpack -p --env=production",
+    "build": "rm -rf dist && mkdir dist && touch dist/index.html && webpack -p --env=production",
     "postbuild": "react-snap && rm dist/index.html",
     "a11y": "pa11y $(g-deploy --get-commit-url)",
     "a11y:preview": "pa11y $(g-deploy --preview --get-commit-url)",
