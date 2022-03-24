@@ -16,6 +16,8 @@ import { getVVCRoot } from './app/util/isVVCInstalled';
 
 const buildTime = new Date();
 
+const delay = (ms) => new Promise((a) => setTimeout(a, ms));
+
 module.exports = async (env = 'development') => {
   const IS_DEV = env === 'development';
   const vvcRoot = getVVCRoot();
@@ -158,6 +160,10 @@ module.exports = async (env = 'development') => {
 
   return Promise.all(
     storyIds.map(async (storyId) => {
+      if (storyIds.length > 1) {
+        await delay(1000);
+      }
+
       const storyMetadata = toc.filter((s) => s.id === storyId)[0];
 
       const initialState = { ...(await getContext(env, storyId, storyMetadata)), buildTime };
