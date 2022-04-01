@@ -21,7 +21,9 @@ const App = () => {
   useEffect(() => {
     (async () => {
       setContext({
-        ...(await (await fetch('./context.json')).json()),
+        ...(await (
+          await fetch(`./context-${document.querySelector('html').dataset.contentSlug}.json`)
+        ).json()),
         buildTime: window.BUILD_TIME,
       });
     })();

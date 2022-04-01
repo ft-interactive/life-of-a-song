@@ -179,10 +179,11 @@ module.exports = async (env = 'development') => {
             filename: `${storyId}.html`,
             context: {
               ...initialState,
+              slug: storyId,
               pageClasses: `core${initialState.flags.dark ? ' dark' : ''}`,
             },
           }),
-          new GenerateJsonPlugin('context.json', initialState),
+          new GenerateJsonPlugin(`context-${storyId}.json`, initialState),
         ].filter((i) => i),
       };
     })
