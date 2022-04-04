@@ -34,6 +34,7 @@ export default async (environment = 'development', storyId, storyMetadata) => {
   d.mainImage.description = storyMetadata.masterimagecredit;
   d.publishedDate = new Date(storyMetadata.pubdate);
   d.bylines = [{ name: storyMetadata.author, url: storyMetadata.authorlink }];
+  d.linkPageUrl = `https://www.ft.com/content/${storyMetadata.uuid}`;
 
   // if a URL is passed into the masterimageuuid field, then just use the URL
   // otherwise, use the UUID
