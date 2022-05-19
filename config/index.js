@@ -51,8 +51,9 @@ export default async (environment = 'development', storyId, storyMetadata) => {
     ? textContent.replace('ft-ig-audio-prod.s3.amazonaws.com', 'ig-audio.ft.com')
     : textContent;
 
-  // Youtube link hotfix => convert /watch?v%3D_ to /watch?v=
+  // Youtube link hotfix => convert /watch?v%3D_ to /watch?v= and %26t%3D to &t=
   storyContent = storyContent.replace(/\/watch\?v%3D/g, '/watch?v=');
+  storyContent = storyContent.replace(/%26t%3D/g, '&t=');
 
   // Remove underline markup around anchor tags
   storyContent = storyContent.replace(/<u><a(.*?)<\/a><\/u>/g, '<a$1</a>');
