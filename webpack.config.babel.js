@@ -27,7 +27,7 @@ module.exports = async (env = 'development') => {
       alias: {
         '@financial-times/g-components': resolve(
           dirname(require.resolve('@financial-times/g-components/package.json')),
-          'src'
+          'build'
         ),
       },
     },
@@ -93,13 +93,10 @@ module.exports = async (env = 'development') => {
           test: /\.css$/,
           use: [
             {
-              loader: 'file-loader',
+              loader: IS_DEV ? 'style-loader' : MiniCssExtractPlugin.loader,
               options: {
-                name: '[name]--[hash].[ext]',
+                hmr: IS_DEV,
               },
-            },
-            {
-              loader: 'extract-loader',
             },
             { loader: 'css-loader', options: { sourceMap: true, url: true } },
             { loader: 'postcss-loader', options: { sourceMap: true } },
