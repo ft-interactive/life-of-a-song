@@ -1,6 +1,6 @@
 version: 2.1
 workflows:
-  starter-kit-s3-deployment:
+  build:
     jobs:
       - build:
           context:
