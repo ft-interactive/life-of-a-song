@@ -15,15 +15,15 @@ jobs:
       tag: '16.13-browsers'
     steps:
       - checkout
-      - run:
-          name: Install Doppler CLI
-          command: (curl -Ls https://cli.doppler.com/install.sh || wget -qO- https://cli.doppler.com/install.sh) | sh -s -- --no-install --no-package-manager
+      # - run:
+      #     name: Install Doppler CLI
+      #     command: (curl -Ls https://cli.doppler.com/install.sh || wget -qO- https://cli.doppler.com/install.sh) | sh -s -- --no-install --no-package-manager
       - run:
           name: Install dependencies
           command: npm install
       - run:
           name: Build
-          command: ./doppler run --command "npm run build"
+          command: npm run build
       - store_artifacts:
           name: Store artifacts (dist)
           path: dist/
@@ -32,9 +32,9 @@ jobs:
           command: |
             if [ "$PREVIEW" == "true" ]
             then
-              ./doppler run --command "npm run deploy -- --confirm --preview"
+              npm run deploy -- --confirm --preview
             else
-              ./doppler run --command "npm run deploy -- --confirm"
+              npm run deploy -- --confirm
             fi
       - run:
           name: Check accessibility of deployed site

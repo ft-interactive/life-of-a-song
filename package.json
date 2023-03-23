@@ -82,7 +82,7 @@
     "npm": ">=5.3.x"
   },
   "optionalDependencies": {
-    "@financial-times/g-deploy": "^3.2.0",
+    "@financial-times/g-deploy": "3.1.0",
     "react-snap": "^1.23.0"
   },
   "private": true,
