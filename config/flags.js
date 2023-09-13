@@ -1,16 +1,19 @@
-const prod = process.env.NODE_ENV === 'production';
+/**
+ * @file
+ * Defines flags used to customise page behaviour.
+ */
 
-export default () => ({ // eslint-disable-line
-  prod,
-  errorReporting: prod,
-  analytics: prod,
-  googleAnalytics: prod,
+export default (environment = 'development') => ({
+  prod: environment === 'production',
+  errorReporting: environment === 'production',
+  analytics: environment === 'production',
+  googleAnalytics: environment === 'production',
   ads: true,
   onwardjourney: true,
   shareButtons: true,
   header: true,
   footer: true,
-
+  dark: false, // Dark theme support requires g-components >= 2.2.x
   /*
     NOTE ABOUT COMMENTS:
 
@@ -30,4 +33,6 @@ export default () => ({ // eslint-disable-line
 
   */
   comments: true,
+  bylines: true,
+  mainImage: true,
 });
