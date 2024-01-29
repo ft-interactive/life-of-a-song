@@ -1,0 +1,111 @@
+$o-typography-is-silent: false;
+$o-editorial-typography-is-silent: false;
+$o-editorial-layout-is-silent: false;
+$system-code: ig-projects;
+
+@import '@financial-times/o-normalise/main.scss';
+@import '@financial-times/o-colors/main.scss';
+@import '@financial-times/o-grid/main.scss';
+@import '@financial-times/o-editorial-layout/main';
+
+@include oGridSurfaceLayoutSizes;
+@include oNormalise();
+
+// @TODO change to using o-fonts
+$font-sans: MetricWeb, sans-serif;
+$font-serif: Georgia, serif;
+$font-display: FinancierDisplayWeb, Georgia, serif;
+
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+html,
+body {
+  background-color: #fff1e5;
+  font-family: MetricWeb, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  display: block;
+}
+
+.core .o--if-js,
+.enhanced .o--if-no-js,
+.is-next .hide-next,
+.is-falcon .hide-falcon,
+.is-loggedin .hide-loggedin,
+.is-anonymous .hide-anonymous {
+  display: none !important;
+}
+
+.show-loggedin,
+.show-anonymous,
+.show-next,
+.show-falcon,
+.hide-falcon,
+.hide-next,
+.hide-loggedin,
+.hide-anonymous {
+  display: none;
+}
+
+.is-loggedin .show-loggedin,
+.is-anonymous .show-anonymous,
+.is-next .show-next,
+.is-falcon .show-falcon,
+.is-falcon .hide-next,
+.is-next .hide-falcon {
+  display: inherit;
+}
+
+body {
+  background: oColorsByUsecase('page', 'background');
+  margin: 0;
+  border: 0;
+  font-family: $font-sans;
+}
+
+.article {
+  &-head {
+    margin-top: 18px;
+    margin-bottom: 0;
+  }
+
+  // This was in the original Starter Kit styles.scss but prevents
+  // doing things like full-bleed images/tables so disabling.
+  // &-body {
+  //   div[data-o-grid-colspan] {
+  //     & > div {
+  //       max-width: 700px;
+  //     }
+  //   }
+  // }
+}
+
+.graphic {
+  display: block;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
+
+  & > img,
+  & > svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  &-b-0 {
+    max-width: 625px;
+  }
+
+  &-b-1 {
+    max-width: 700px;
+  }
+}

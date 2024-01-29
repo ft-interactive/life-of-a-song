@@ -35,4 +35,6 @@ export default (environment = 'development') => ({
   comments: true,
   bylines: true,
   mainImage: true,
+  summary: true,
+  data: false,
 });
