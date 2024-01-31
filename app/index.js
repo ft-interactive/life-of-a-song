@@ -7,15 +7,14 @@
  */
 
 import React from 'react';
-import { hydrate, render } from 'react-dom';
-import '@financial-times/g-components/g-components.css';
+import { hydrateRoot, createRoot } from 'react-dom/client';
 import App from './app';
-import './styles.scss';
 
 const rootElement = document.getElementById('root');
 
 if (rootElement.hasChildNodes()) {
-  hydrate(<App />, rootElement);
+  hydrateRoot(rootElement, <App />);
 } else {
-  render(<App />, rootElement);
+  const root = createRoot(rootElement);
+  root.render(<App />);
 }

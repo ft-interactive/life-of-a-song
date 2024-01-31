@@ -4,12 +4,13 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import { hot } from 'react-hot-loader/root';
 import Layout from '@financial-times/g-components/article-layout';
 import StoryTopper from '@financial-times/g-components/story-topper';
 import Epilogue from '@financial-times/g-components/epilogue';
 import { GridChild, GridRow, GridContainer } from '@financial-times/g-components/grid';
-import GAudio from '@financial-times/g-audio';
+import GAudio from '@financial-times/g-audio/main';
+import '@financial-times/g-components/style.css';
+import './styles.scss';
 
 const App = () => {
   const [context, setContext] = useState(null);
@@ -58,4 +59,4 @@ const App = () => {
   ) : null;
 };
 
-export default hot(App);
+export default App;

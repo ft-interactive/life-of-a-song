@@ -22,12 +22,12 @@ module.exports = async (env = 'development') => {
 
   const BASE_CONFIG = {
     mode: env,
-    entry: ['react-hot-loader/patch', './app/index.js'],
+    entry: ['./app/index.js'],
     resolve: {
       alias: {
         '@financial-times/g-components': resolve(
           dirname(require.resolve('@financial-times/g-components/package.json')),
-          'build'
+          'dist'
         ),
       },
     },
@@ -71,9 +71,8 @@ module.exports = async (env = 'development') => {
                   },
                 ],
                 '@babel/preset-react',
-                '@emotion/babel-preset-css-prop',
               ],
-              plugins: ['react-hot-loader/babel', '@babel/plugin-syntax-dynamic-import'],
+              plugins: ['@babel/plugin-syntax-dynamic-import'],
             },
           },
         },
@@ -99,7 +98,6 @@ module.exports = async (env = 'development') => {
               },
             },
             { loader: 'css-loader', options: { sourceMap: true, url: true } },
-            { loader: 'postcss-loader', options: { sourceMap: true } },
           ],
         },
         {
