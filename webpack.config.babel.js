@@ -98,7 +98,6 @@ module.exports = async (env = 'development') => {
               },
             },
             { loader: 'css-loader', options: { sourceMap: true, url: true } },
-            { loader: 'postcss-loader', options: { sourceMap: true } },
           ],
         },
         {

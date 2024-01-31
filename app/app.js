@@ -9,7 +9,7 @@ import StoryTopper from '@financial-times/g-components/story-topper';
 import Epilogue from '@financial-times/g-components/epilogue';
 import { GridChild, GridRow, GridContainer } from '@financial-times/g-components/grid';
 import GAudio from '@financial-times/g-audio/main';
-import './g-components-styles.scss';
+import '@financial-times/g-components/style.css';
 import './styles.scss';
 
 const App = () => {
