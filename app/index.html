@@ -67,7 +67,7 @@
       <%= JSON.stringify({ sentryEndpoint: 'https://ddbd80489ff549538250bbe37fa52bbd@sentry.io/71130'}) %>
     </script>
     <% } %>
-    <script src="https://polyfill-fastly.io/v3/polyfill.min.js?features=<%= context.polyfillFeatures %>"></script>
+    <script src="https://polyfill-fastly.io/v3/polyfill.min.js?features=<%= htmlWebpackPlugin.options.context.polyfillFeatures %>"></script>
 
     <script type="text/javascript">
       cutsTheMustard =
