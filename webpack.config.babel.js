@@ -7,18 +7,24 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import ImageminWebpackPlugin from 'imagemin-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import { HotModuleReplacementPlugin, DefinePlugin } from 'webpack';
+import webpack, { HotModuleReplacementPlugin, DefinePlugin } from 'webpack';
 import GenerateJsonPlugin from 'generate-json-webpack-plugin';
 import { resolve, dirname } from 'path';
 import * as bertha from 'bertha-client';
 import getContext from './config';
 
+const path = require('path');
+const dotenv = require('dotenv');
+
 const buildTime = new Date();
 
 const delay = (ms) => new Promise((a) => setTimeout(a, ms));
 
-module.exports = async (env = 'development') => {
+module.exports = async (rawEnv) => {
+  const env = rawEnv.development ? 'development' : 'production';
   const IS_DEV = env === 'development';
+  const envPath = path.resolve(__dirname, '.env');
+  const envVars = dotenv.config({ path: envPath }).parsed || {};
 
   const BASE_CONFIG = {
     mode: env,
@@ -32,9 +38,9 @@ module.exports = async (env = 'development') => {
       },
     },
     output: {
-      filename: IS_DEV ? '[name].js' : '[name].[hash:8].js',
-      sourceMapFilename: IS_DEV ? '[name].map' : '[name].[hash:8].map',
-      chunkFilename: IS_DEV ? '[id].js' : '[id].[hash:8].js',
+      filename: IS_DEV ? '[name].js' : '[name].[contenthash:8].js',
+      sourceMapFilename: IS_DEV ? '[name].map' : '[name].[contenthash:8].map',
+      chunkFilename: IS_DEV ? '[id].js' : '[id].[contenthash:8].js',
     },
     module: {
       rules: [
@@ -93,11 +99,12 @@ module.exports = async (env = 'development') => {
           use: [
             {
               loader: IS_DEV ? 'style-loader' : MiniCssExtractPlugin.loader,
-              options: {
-                hmr: IS_DEV,
-              },
             },
-            { loader: 'css-loader', options: { sourceMap: true, url: true } },
+            {
+              loader: 'css-loader',
+              options: { sourceMap: true, url: true },
+            },
+            { loader: 'postcss-loader', options: { sourceMap: true } },
           ],
         },
         {
@@ -108,16 +115,15 @@ module.exports = async (env = 'development') => {
           use: [
             {
               loader: IS_DEV ? 'style-loader' : MiniCssExtractPlugin.loader,
-              options: {
-                hmr: IS_DEV,
-              },
             },
             { loader: 'css-loader', options: { sourceMap: true } },
             {
               loader: 'sass-loader',
               options: {
                 sourceMap: true,
-                includePaths: ['node_modules', 'node_modules/@financial-times'],
+                sassOptions: {
+                  includePaths: ['node_modules', 'node_modules/@financial-times'],
+                },
               },
             },
           ],
@@ -125,11 +131,13 @@ module.exports = async (env = 'development') => {
       ],
     },
     devServer: {
-      hot: true,
       allowedHosts: ['.ngrok.io', 'local.ft.com', 'bs-local.com'],
     },
     devtool: IS_DEV ? 'inline-source-map' : 'source-map',
     plugins: [
+      new webpack.DefinePlugin({
+        'process.env': JSON.stringify(envVars),
+      }),
       new HotModuleReplacementPlugin(),
       new MiniCssExtractPlugin({
         filename: IS_DEV ? '[name].css' : '[name].[contenthash].css',

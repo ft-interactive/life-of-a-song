@@ -4,11 +4,11 @@
  * to app as `context`.
  */
 
-import structuredGoogleDoc from 'structured-google-docs-client';
-import * as cheerio from 'cheerio';
-import article from './article';
-import getFlags from './flags';
-import getOnwardJourney from './onward-journey';
+const structuredGoogleDoc = require('structured-google-docs-client');
+const cheerio = require('cheerio');
+const article = require('./article.js');
+const getFlags = require('./flags.js');
+const getOnwardJourney = require('./onward-journey.js');
 
 const trim = (thing) => thing.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
 
@@ -20,7 +20,7 @@ async function transform(a, b) {
   return `<span class="g-audio">${a}<audio controls><source src="${audioSource}" type="audio/mpeg"></audio></span>`;
 }
 
-export default async (environment = 'development', storyId, storyMetadata) => {
+module.exports = async (environment = 'development', storyId, storyMetadata) => {
   const d = await article(environment);
   const flags = await getFlags(environment);
   const { relatedContent } = await getOnwardJourney(environment);
@@ -46,7 +46,7 @@ export default async (environment = 'development', storyId, storyMetadata) => {
     delete d.mainImage.url;
   }
 
-  const textContent = await structuredGoogleDoc(storyMetadata.googledocid, { transform });
+  const textContent = await structuredGoogleDoc.default(storyMetadata.googledocid, { transform });
   let storyContent = textContent
     ? textContent.replace('ft-ig-audio-prod.s3.amazonaws.com', 'ig-audio.ft.com')
     : textContent;
