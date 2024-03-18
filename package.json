@@ -76,9 +76,9 @@
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.1"
   },
-  "engines": {
-    "node": ">=8",
-    "npm": ">=5.3.x"
+  "volta": {
+    "node": "20.11.1",
+    "npm": "10.2.4"
   },
   "optionalDependencies": {
     "@financial-times/g-deploy": "3.1.0",
@@ -103,7 +103,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
     "@financial-times/g-audio": "^2.0.2",
-    "@financial-times/g-components": "^9.3.0",
+    "@financial-times/g-components": "^9.4.1",
     "@financial-times/o-colors": "^6.4.0",
     "@financial-times/o-grid": "^6.1.0",
     "bertha-client": "^4.0.1",
