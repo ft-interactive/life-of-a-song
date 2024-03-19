@@ -81,13 +81,12 @@
     "npm": "10.2.4"
   },
   "optionalDependencies": {
-    "@financial-times/g-deploy": "3.1.0",
-    "react-snap": "^1.23.0"
+    "@financial-times/g-deploy": "3.1.0"
   },
   "private": true,
   "scripts": {
     "build": "rm -rf dist && mkdir dist && touch dist/index.html && webpack --env=production",
-    "postbuild": "react-snap && rm dist/index.html",
+    "postbuild": "rm dist/index.html",
     "a11y": "pa11y $(g-deploy --get-commit-url)",
     "a11y:preview": "pa11y $(g-deploy --preview --get-commit-url)",
     "a11y:local": "pa11y localhost:8080",
@@ -113,9 +112,5 @@
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "structured-google-docs-client": "^0.0.3"
-  },
-  "reactSnap": {
-    "source": "dist",
-    "skipThirdPartyRequests": true
   }
 }
