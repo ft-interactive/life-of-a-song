@@ -3,7 +3,7 @@
  * Defines flags used to customise page behaviour.
  */
 
-export default (environment = 'development') => ({
+module.exports = (environment = 'development') => ({
   prod: environment === 'production',
   errorReporting: environment === 'production',
   analytics: environment === 'production',

@@ -5,7 +5,7 @@
  * @TODO Please ensure this file is filled out before publishing!!!
  */
 
-export default (environment = 'development') => {
+module.exports = (environment = 'development') => {
   const config = {
     // link file UUID
     id: '', // @TODO put the UUID from Methode story/link file here
