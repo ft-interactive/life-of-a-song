@@ -105,12 +105,12 @@
     "@financial-times/g-components": "^9.4.1",
     "@financial-times/o-colors": "^6.4.0",
     "@financial-times/o-grid": "^6.1.0",
+    "@financial-times/structured-google-docs-client": "^0.0.4",
     "bertha-client": "^4.0.1",
     "cheerio": "^1.0.0-rc.12",
     "core-js": "^3.35.1",
     "prop-types": "^15.8.1",
     "react": "^18.1.0",
-    "react-dom": "^18.1.0",
-    "structured-google-docs-client": "^0.0.3"
+    "react-dom": "^18.1.0"
   }
 }

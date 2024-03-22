@@ -4,7 +4,7 @@
  * to app as `context`.
  */
 
-const structuredGoogleDoc = require('structured-google-docs-client');
+const structuredGoogleDoc = require('@financial-times/structured-google-docs-client');
 const cheerio = require('cheerio');
 const article = require('./article.js');
 const getFlags = require('./flags.js');
