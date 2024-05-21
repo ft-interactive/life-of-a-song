@@ -5,6 +5,7 @@ $system-code: 'ig-projects';
 
 .g-audio.g-audio--initialized {
   margin: 0 -3px 0 5px;
+  white-space: nowrap;
 }
 
 .g-audio.g-audio--initialized .g-audio--playbutton:before,
