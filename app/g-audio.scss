@@ -1,0 +1,211 @@
+.g-audio.g-audio--initialized {
+  cursor: pointer;
+  margin: 0 5px;
+  vertical-align: top;
+}
+.g-audio.g-audio--initialized .g-audio--playbutton {
+  background: #e6175c;
+  color: #ffffff;
+  padding: 3px 0;
+}
+.g-audio.g-audio--initialized .g-audio--playbutton:hover {
+  background: #990f3d;
+}
+.g-audio.g-audio--initialized .g-audio--playbutton:before {
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 50%;
+  background-color: transparent;
+  vertical-align: baseline;
+  width: 28px;
+  height: 28px;
+  background-image: url('https://www.ft.com/__origami/service/image/v2/images/raw/fticon-v1:play?source=origami-build-tools&tint=%23FFFFFF,%23FFFFFF&format=svg');
+  content: '';
+  font-size: 1em;
+  vertical-align: bottom;
+}
+@media screen and (-ms-high-contrast: active) {
+  .g-audio.g-audio--initialized .g-audio--playbutton:before {
+    background-image: url('https://www.ft.com/__origami/service/image/v2/images/raw/fticon-v1:play?source=origami-build-tools&tint=%23ffffff,%23ffffff&format=svg');
+  }
+}
+@media screen and (-ms-high-contrast: black-on-white) {
+  .g-audio.g-audio--initialized .g-audio--playbutton:before {
+    background-image: url('https://www.ft.com/__origami/service/image/v2/images/raw/fticon-v1:play?source=origami-build-tools&tint=%23000000,%23000000&format=svg');
+  }
+}
+.g-audio.g-audio--initialized .g-audio-content {
+  background: #fddbd7;
+  color: #1a1817;
+  display: inline;
+  padding: 3px 6px;
+  position: relative;
+}
+.g-audio.g-audio--initialized .g-audio-content .g-audio-content-progressbar {
+  background: #e6175c;
+  height: 1px;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  bottom: 0;
+  -webkit-transition: width 0.1s ease;
+  transition: width 0.1s ease;
+}
+.g-audio.g-audio--initialized.g-audio-pause .g-audio--playbutton:before {
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 50%;
+  background-color: transparent;
+  vertical-align: baseline;
+  width: 28px;
+  height: 28px;
+  background-image: url('https://www.ft.com/__origami/service/image/v2/images/raw/fticon-v1:pause?source=origami-build-tools&tint=%23FFFFFF,%23FFFFFF&format=svg');
+  content: '';
+  font-size: 1em;
+  vertical-align: bottom;
+}
+@media screen and (-ms-high-contrast: active) {
+  .g-audio.g-audio--initialized.g-audio-pause .g-audio--playbutton:before {
+    background-image: url('https://www.ft.com/__origami/service/image/v2/images/raw/fticon-v1:pause?source=origami-build-tools&tint=%23ffffff,%23ffffff&format=svg');
+  }
+}
+@media screen and (-ms-high-contrast: black-on-white) {
+  .g-audio.g-audio--initialized.g-audio-pause .g-audio--playbutton:before {
+    background-image: url('https://www.ft.com/__origami/service/image/v2/images/raw/fticon-v1:pause?source=origami-build-tools&tint=%23000000,%23000000&format=svg');
+  }
+}
+.g-audio.g-audio--initialized.g-audio-pause .g-audio-content:hover .g-audio-content-progressbar {
+  background: #990f3d;
+}
+.g-audio.g-audio--initialized.g-audio-pause
+  .g-audio-content:hover
+  .g-audio-content-progressbar:after {
+  content: '•';
+  color: #990f3d;
+  position: absolute;
+  right: -2px;
+  line-height: 0;
+}
+
+.g-audio.g-audio--initialized.g-audio--block {
+  display: block;
+  margin: 1em 0;
+  padding: 10px 0;
+  width: 100%;
+}
+.g-audio.g-audio--initialized.g-audio--block .g-audio--playbutton {
+  background: #e6175c;
+  color: #ffffff;
+  padding: 10px 6px;
+}
+.g-audio.g-audio--initialized.g-audio--block .g-audio-content {
+  padding: 10px 15px;
+}
+
+.g-audio.g-audio--initialized {
+  cursor: pointer;
+  margin: 0 5px;
+  vertical-align: top;
+}
+.g-audio.g-audio--initialized .g-audio--playbutton {
+  background: #e6175c;
+  color: #ffffff;
+  padding: 3px 0;
+}
+.g-audio.g-audio--initialized .g-audio--playbutton:hover {
+  background: #990f3d;
+}
+.g-audio.g-audio--initialized .g-audio--playbutton:before {
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 50%;
+  background-color: transparent;
+  vertical-align: baseline;
+  width: 28px;
+  height: 28px;
+  background-image: url('https://www.ft.com/__origami/service/image/v2/images/raw/fticon-v1:play?source=origami-build-tools&tint=%23FFFFFF,%23FFFFFF&format=svg');
+  content: '';
+  font-size: 1em;
+  vertical-align: bottom;
+}
+@media screen and (-ms-high-contrast: active) {
+  .g-audio.g-audio--initialized .g-audio--playbutton:before {
+    background-image: url('https://www.ft.com/__origami/service/image/v2/images/raw/fticon-v1:play?source=origami-build-tools&tint=%23ffffff,%23ffffff&format=svg');
+  }
+}
+@media screen and (-ms-high-contrast: black-on-white) {
+  .g-audio.g-audio--initialized .g-audio--playbutton:before {
+    background-image: url('https://www.ft.com/__origami/service/image/v2/images/raw/fticon-v1:play?source=origami-build-tools&tint=%23000000,%23000000&format=svg');
+  }
+}
+.g-audio.g-audio--initialized .g-audio-content {
+  background: #fddbd7;
+  color: #1a1817;
+  display: inline;
+  padding: 3px 6px;
+  position: relative;
+}
+.g-audio.g-audio--initialized .g-audio-content .g-audio-content-progressbar {
+  background: #e6175c;
+  height: 1px;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  bottom: 0;
+  -webkit-transition: width 0.1s ease;
+  transition: width 0.1s ease;
+}
+.g-audio.g-audio--initialized.g-audio-pause .g-audio--playbutton:before {
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 50%;
+  background-color: transparent;
+  vertical-align: baseline;
+  width: 28px;
+  height: 28px;
+  background-image: url('https://www.ft.com/__origami/service/image/v2/images/raw/fticon-v1:pause?source=origami-build-tools&tint=%23FFFFFF,%23FFFFFF&format=svg');
+  content: '';
+  font-size: 1em;
+  vertical-align: bottom;
+}
+@media screen and (-ms-high-contrast: active) {
+  .g-audio.g-audio--initialized.g-audio-pause .g-audio--playbutton:before {
+    background-image: url('https://www.ft.com/__origami/service/image/v2/images/raw/fticon-v1:pause?source=origami-build-tools&tint=%23ffffff,%23ffffff&format=svg');
+  }
+}
+@media screen and (-ms-high-contrast: black-on-white) {
+  .g-audio.g-audio--initialized.g-audio-pause .g-audio--playbutton:before {
+    background-image: url('https://www.ft.com/__origami/service/image/v2/images/raw/fticon-v1:pause?source=origami-build-tools&tint=%23000000,%23000000&format=svg');
+  }
+}
+.g-audio.g-audio--initialized.g-audio-pause .g-audio-content:hover .g-audio-content-progressbar {
+  background: #990f3d;
+}
+.g-audio.g-audio--initialized.g-audio-pause
+  .g-audio-content:hover
+  .g-audio-content-progressbar:after {
+  content: '•';
+  color: #990f3d;
+  position: absolute;
+  right: -2px;
+  line-height: 0;
+}
+
+.g-audio.g-audio--initialized.g-audio--block {
+  display: block;
+  margin: 1em 0;
+  padding: 10px 0;
+  width: 100%;
+}
+.g-audio.g-audio--initialized.g-audio--block .g-audio--playbutton {
+  background: #e6175c;
+  color: #ffffff;
+  padding: 10px 6px;
+}
+.g-audio.g-audio--initialized.g-audio--block .g-audio-content {
+  padding: 10px 15px;
+}

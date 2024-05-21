@@ -1,9 +1,7 @@
 $system-code: 'ig-projects';
 @import '@financial-times/o-colors/main';
 @import '@financial-times/o-grid/main';
-@import '@financial-times/g-audio/main';
-
-@include gAudio();
+@import './g-audio.scss';
 
 .g-audio.g-audio--initialized {
   margin: 0 -3px 0 5px;
@@ -13,14 +11,6 @@ $system-code: 'ig-projects';
 .g-audio.g-audio--initialized.g-audio-pause .g-audio--playbutton:before {
   margin-top: 0;
   margin-bottom: 2px;
-}
-
-@include oGridRespondTo(XL) {
-  .g-audio.g-audio--initialized .g-audio--playbutton:before,
-  .g-audio.g-audio--initialized.g-audio-pause .g-audio--playbutton:before {
-    margin-top: 0;
-    margin-bottom: 4px;
-  }
 }
 
 .inline-image {
